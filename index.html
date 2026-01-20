@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Let's Coding & Play - AI 기반 파이썬 코딩 교육 플랫폼</title>
+  <meta name="description" content="학원을 위한 AI 튜터 × 자동 채점 × 게이미피케이션 코딩 교육 솔루션. 학생은 재미있게, 선생님은 편리하게 파이썬을 가르치세요.">
+  <meta name="keywords" content="코딩교육, 파이썬, AI튜터, 학원솔루션, 자동채점, 코딩학원">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Let's Coding & Play - AI 기반 파이썬 코딩 교육">
+  <meta property="og:description" content="학생은 재미있게, 선생님은 편리하게. AI와 함께하는 스마트한 코딩 교육.">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts -->
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/landing.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container navbar-container">
+      <a href="#" class="logo">
+        <span class="logo-icon">🚀</span>
+        <span class="logo-text">Let's Coding & Play</span>
+      </a>
+      <div class="nav-links" id="nav-links">
+        <a href="#features" class="nav-link">기능</a>
+        <a href="#curriculum" class="nav-link">커리큘럼</a>
+        <a href="#pricing" class="nav-link">요금제</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+      </div>
+      <a href="#final-cta" class="btn btn-primary nav-cta">무료 체험 시작</a>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="메뉴 열기">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#features" class="mobile-nav-link">기능</a>
+    <a href="#curriculum" class="mobile-nav-link">커리큘럼</a>
+    <a href="#pricing" class="mobile-nav-link">요금제</a>
+    <a href="#faq" class="mobile-nav-link">FAQ</a>
+    <a href="#final-cta" class="btn btn-primary mobile-cta">무료 체험 시작</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="container hero-container">
+      <div class="hero-content">
+        <span class="badge">🚀 AI 기반 코딩 교육 플랫폼</span>
+        <h1 class="hero-title">
+          학생은 <span class="gradient-text">재미있게</span>,<br>
+          선생님은 <span class="gradient-text">편리하게</span>
+        </h1>
+        <p class="hero-subtitle">
+          AI 튜터와 게이미피케이션으로<br>
+          완성하는 파이썬 코딩 교육
+        </p>
+        <div class="hero-features">
+          <span class="hero-feature">✓ 자동 채점</span>
+          <span class="hero-feature">✓ AI 힌트</span>
+          <span class="hero-feature">✓ 실시간 관리</span>
+        </div>
+        <div class="hero-cta">
+          <a href="#final-cta" class="btn btn-primary btn-lg">무료 체험 시작하기</a>
+          <a href="#how-it-works" class="btn btn-secondary btn-lg">자세히 알아보기</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="code-editor-preview">
+          <div class="editor-header">
+            <div class="editor-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <span class="editor-title">main.py</span>
+          </div>
+          <div class="editor-content">
+            <pre><code><span class="code-comment"># 두 수의 합을 구하세요</span>
+<span class="code-keyword">def</span> <span class="code-function">add_numbers</span>(a, b):
+    <span class="code-keyword">return</span> a + b
+
+<span class="code-variable">result</span> = add_numbers(<span class="code-number">5</span>, <span class="code-number">3</span>)
+<span class="code-function">print</span>(result)  <span class="code-comment"># 8</span></code></pre>
+          </div>
+          <div class="editor-footer">
+            <span class="status-badge success">✓ 정답입니다!</span>
+            <span class="star-badge">⭐ +1</span>
+          </div>
+        </div>
+        <div class="floating-elements">
+          <div class="floating-star star-1">⭐</div>
+          <div class="floating-star star-2">🌟</div>
+          <div class="floating-star star-3">✨</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pain Points Section -->
+  <section class="section pain-points" id="pain-points">
+    <div class="container">
+      <h2 class="section-title">코딩 교육, 이런 고민 있으셨죠?</h2>
+      <div class="pain-cards">
+        <div class="pain-card">
+          <div class="pain-icon">😓</div>
+          <h3 class="pain-title">개별 관리의 어려움</h3>
+          <p class="pain-text">학생마다 실력이 달라서 한 명 한 명 케어하기 힘들어요</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">⏰</div>
+          <h3 class="pain-title">시간 부족</h3>
+          <p class="pain-text">채점하고 피드백 주는 데 수업 시간이 다 가요</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">📊</div>
+          <h3 class="pain-title">진도 파악 어려움</h3>
+          <p class="pain-text">누가 어디까지 했는지 일일이 확인하기 번거로워요</p>
+        </div>
+      </div>
+      <p class="transition-text">이제 Let's Coding & Play가 해결해 드립니다 ↓</p>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section features" id="features">
+    <div class="container">
+      <h2 class="section-title">코딩 교육에 필요한 모든 것</h2>
+      <p class="section-subtitle">하나의 플랫폼에서 학습, 평가, 관리까지</p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">💻</div>
+          <h3 class="feature-title">온라인 코드 에디터</h3>
+          <p class="feature-text">설치 없이 브라우저에서 바로 Python 코드 작성 및 실행</p>
+          <span class="feature-tag">CodeMirror, 문법 하이라이팅</span>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">✅</div>
+          <h3 class="feature-title">자동 채점 시스템</h3>
+          <p class="feature-text">테스트케이스 기반 즉각적인 정답 확인으로 선생님 부담 감소</p>
+          <span class="feature-tag">실시간 채점, 5초 타임아웃</span>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🤖</div>
+          <h3 class="feature-title">AI 학습 지원</h3>
+          <p class="feature-text">막힐 때 AI가 힌트를 주고, 제출한 코드를 리뷰해줍니다</p>
+          <span class="feature-tag">Claude AI, 개인 맞춤형</span>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⭐</div>
+          <h3 class="feature-title">게이미피케이션</h3>
+          <p class="feature-text">문제를 풀면 별을 획득! 은색별 → 금색별로 레벨업</p>
+          <span class="feature-tag">동기 부여, 성취감</span>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3 class="feature-title">실시간 대시보드</h3>
+          <p class="feature-text">클래스별 학생 진행 상황을 한눈에 파악</p>
+          <span class="feature-tag">실시간 모니터링, 리포트</span>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏫</div>
+          <h3 class="feature-title">멀티 기관 지원</h3>
+          <p class="feature-text">여러 지점, 여러 클래스를 하나의 플랫폼에서 관리</p>
+          <span class="feature-tag">멀티테넌시, 확장성</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="section how-it-works" id="how-it-works">
+    <div class="container">
+      <h2 class="section-title">3단계로 시작하세요</h2>
+      <p class="section-subtitle">복잡한 설정 없이, 가입 즉시 사용 가능</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3 class="step-title">회원가입</h3>
+            <p class="step-text">학원 정보를 입력하고 관리자 계정을 생성합니다</p>
+            <span class="step-time">2분</span>
+          </div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3 class="step-title">클래스 생성</h3>
+            <p class="step-text">학생 계정을 만들고 클래스에 배정합니다</p>
+            <span class="step-time">5분</span>
+          </div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3 class="step-title">학습 시작</h3>
+            <p class="step-text">학생은 문제를 풀고, 선생님은 실시간으로 확인합니다</p>
+            <span class="step-time">즉시</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Features Section -->
+  <section class="section ai-features" id="ai-features">
+    <div class="container">
+      <h2 class="section-title">24시간 AI 튜터가 함께합니다</h2>
+      <p class="section-subtitle">학생이 막힐 때, AI가 도와드립니다</p>
+      <div class="ai-container">
+        <div class="ai-list">
+          <div class="ai-item">
+            <div class="ai-item-icon">🔍</div>
+            <div class="ai-item-content">
+              <h3 class="ai-item-title">AI 힌트</h3>
+              <p class="ai-item-text">문제를 못 풀 때 단계별로 힌트를 제공합니다. 정답을 직접 알려주지 않고 생각할 수 있게 유도합니다.</p>
+            </div>
+          </div>
+          <div class="ai-item">
+            <div class="ai-item-icon">📝</div>
+            <div class="ai-item-content">
+              <h3 class="ai-item-title">코드 리뷰</h3>
+              <p class="ai-item-text">제출한 코드의 개선점을 친절하게 알려줍니다. 더 좋은 코드 작성법을 학습할 수 있습니다.</p>
+            </div>
+          </div>
+          <div class="ai-item">
+            <div class="ai-item-icon">🐛</div>
+            <div class="ai-item-content">
+              <h3 class="ai-item-title">에러 분석</h3>
+              <p class="ai-item-text">코드 실행 중 발생한 에러를 학생 눈높이에 맞춰 설명합니다.</p>
+            </div>
+          </div>
+          <div class="ai-item">
+            <div class="ai-item-icon">💬</div>
+            <div class="ai-item-content">
+              <h3 class="ai-item-title">개념 설명</h3>
+              <p class="ai-item-text">리스트, 딕셔너리 등 이해가 어려운 개념을 대화형으로 설명합니다.</p>
+            </div>
+          </div>
+        </div>
+        <div class="ai-demo">
+          <div class="chat-window">
+            <div class="chat-header">
+              <span class="chat-avatar">🤖</span>
+              <span class="chat-title">AI 튜터</span>
+            </div>
+            <div class="chat-messages">
+              <div class="chat-message user">
+                <p>리스트에서 값을 어떻게 가져와요?</p>
+              </div>
+              <div class="chat-message ai">
+                <p>💡 <strong>힌트:</strong> 리스트의 인덱스는 0부터 시작해요.</p>
+                <p><code>arr[0]</code>이 첫 번째 요소입니다.</p>
+                <p>예를 들어 <code>fruits = ["사과", "바나나"]</code>에서 "사과"는 <code>fruits[0]</code>으로 접근해요!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gamification Section -->
+  <section class="section gamification" id="gamification">
+    <div class="container">
+      <h2 class="section-title">재미있게 배우니까 더 오래 기억해요</h2>
+      <p class="section-subtitle">별을 모으고, 픽셀아트를 완성하세요</p>
+      <div class="gamification-grid">
+        <div class="gamification-card">
+          <h3 class="gamification-title">⭐ 별 시스템</h3>
+          <div class="star-system">
+            <div class="star-level">
+              <span class="star-icon empty">☆</span>
+              <span class="star-label">0회</span>
+              <span class="star-status">아직없음</span>
+            </div>
+            <div class="star-arrow">→</div>
+            <div class="star-level">
+              <span class="star-icon silver">⭐</span>
+              <span class="star-label">1-9회</span>
+              <span class="star-status">은색별</span>
+            </div>
+            <div class="star-arrow">→</div>
+            <div class="star-level">
+              <span class="star-icon gold">🌟</span>
+              <span class="star-label">10회+</span>
+              <span class="star-status">금색별</span>
+            </div>
+          </div>
+          <p class="gamification-text">문제를 반복해서 풀수록 별이 빛나요!<br>10번 이상 정답 시 금색별로 레벨업!</p>
+        </div>
+        <div class="gamification-card">
+          <h3 class="gamification-title">🎨 픽셀아트 진행도</h3>
+          <div class="pixel-art-demo">
+            <div class="pixel-grid">
+              <!-- Pixel art grid will be rendered by JS -->
+            </div>
+          </div>
+          <div class="progress-info">
+            <span class="progress-text">현재: 127/500</span>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 25%"></div>
+            </div>
+            <span class="progress-percent">25%</span>
+          </div>
+          <p class="gamification-text">500문제 달성 시 픽셀아트가 완성됩니다!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dashboard Preview Section -->
+  <section class="section dashboard-preview" id="dashboard">
+    <div class="container">
+      <h2 class="section-title">한눈에 파악하는 학습 현황</h2>
+      <p class="section-subtitle">선생님을 위한 강력한 관리 도구</p>
+      <div class="dashboard-tabs">
+        <button class="tab-btn active" data-tab="students">학생 현황</button>
+        <button class="tab-btn" data-tab="class">클래스 관리</button>
+        <button class="tab-btn" data-tab="problems">문제 관리</button>
+      </div>
+      <div class="dashboard-content">
+        <div class="dashboard-window">
+          <div class="dashboard-header">
+            <span class="class-name">클래스: 파이썬 기초반</span>
+          </div>
+          <div class="dashboard-table">
+            <div class="table-header">
+              <span>학생명</span>
+              <span>진행률</span>
+              <span>최근 활동</span>
+              <span>별 개수</span>
+            </div>
+            <div class="table-row">
+              <span class="student-name">김철수</span>
+              <span class="progress-cell">
+                <div class="mini-progress"><div class="mini-fill" style="width: 72%"></div></div>
+                <span>72%</span>
+              </span>
+              <span class="activity">오늘 14:30</span>
+              <span class="stars">⭐⭐⭐</span>
+            </div>
+            <div class="table-row">
+              <span class="student-name">이영희</span>
+              <span class="progress-cell">
+                <div class="mini-progress"><div class="mini-fill" style="width: 58%"></div></div>
+                <span>58%</span>
+              </span>
+              <span class="activity">어제 16:20</span>
+              <span class="stars">⭐⭐</span>
+            </div>
+            <div class="table-row">
+              <span class="student-name">박민수</span>
+              <span class="progress-cell">
+                <div class="mini-progress"><div class="mini-fill" style="width: 85%"></div></div>
+                <span>85%</span>
+              </span>
+              <span class="activity">오늘 11:10</span>
+              <span class="stars">⭐⭐⭐⭐</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dashboard-features">
+        <span class="dashboard-feature">✓ 클래스별 학생 진행 상황</span>
+        <span class="dashboard-feature">✓ 개별 학생 상세 기록</span>
+        <span class="dashboard-feature">✓ 문제별 정답률 통계</span>
+        <span class="dashboard-feature">✓ AI 사용 내역 추적</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Curriculum Section -->
+  <section class="section curriculum" id="curriculum">
+    <div class="container">
+      <h2 class="section-title">체계적인 커리큘럼으로 시작하세요</h2>
+      <p class="section-subtitle">파이썬 기초부터 응용까지, 단계별 학습</p>
+      <div class="curriculum-levels">
+        <div class="level-card active">
+          <div class="level-icon">📗</div>
+          <h3 class="level-title">BASIC</h3>
+          <p class="level-subtitle">기초</p>
+          <span class="level-count">30문제</span>
+        </div>
+        <div class="level-card coming">
+          <div class="level-icon">📙</div>
+          <h3 class="level-title">INTERMEDIATE</h3>
+          <p class="level-subtitle">응용</p>
+          <span class="level-badge">확장 예정</span>
+        </div>
+        <div class="level-card coming">
+          <div class="level-icon">📕</div>
+          <h3 class="level-title">ADVANCED</h3>
+          <p class="level-subtitle">심화</p>
+          <span class="level-badge">확장 예정</span>
+        </div>
+      </div>
+      <div class="curriculum-detail">
+        <h3 class="curriculum-detail-title">기초 커리큘럼 (10개 카테고리)</h3>
+        <div class="curriculum-grid">
+          <div class="curriculum-item">
+            <span class="curriculum-number">1</span>
+            <div class="curriculum-content">
+              <h4>출력</h4>
+              <p>문자열 출력과 간단한 문자열 활용</p>
+            </div>
+          </div>
+          <div class="curriculum-item">
+            <span class="curriculum-number">2</span>
+            <div class="curriculum-content">
+              <h4>입력</h4>
+              <p>숫자 입력과 기본 산술 연산</p>
+            </div>
+          </div>
+          <div class="curriculum-item">
+            <span class="curriculum-number">3</span>
+            <div class="curriculum-content">
+              <h4>자료형</h4>
+              <p>자료형 구분과 활용</p>
+            </div>
+          </div>
+          <div class="curriculum-item">
+            <span class="curriculum-number">4</span>
+            <div class="curriculum-content">
+              <h4>변수</h4>
+              <p>변수 만들기와 값 활용</p>
+            </div>
+          </div>
+          <div class="curriculum-item">
+            <span class="curriculum-number">5</span>
+            <div class="curriculum-content">
+              <h4>리스트</h4>
+              <p>리스트로 여러 값 다루기</p>
+            </div>
+          </div>
+          <div class="curriculum-item">
+            <span class="curriculum-number">6</span>
+            <div class="curriculum-content">
+              <h4>딕셔너리</h4>
+              <p>딕셔너리로 정보 정리</p>
+            </div>
+          </div>
+          <div class="curriculum-item">
+            <span class="curriculum-number">7</span>
+            <div class="curriculum-content">
+              <h4>논리</h4>
+              <p>참과 거짓으로 조건 판단</p>
+            </div>
+          </div>
+          <div class="curriculum-item">
+            <span class="curriculum-number">8</span>
+            <div class="curriculum-content">
+              <h4>조건문</h4>
+              <p>조건문으로 프로그램 흐름 제어</p>
+            </div>
+          </div>
+          <div class="curriculum-item">
+            <span class="curriculum-number">9</span>
+            <div class="curriculum-content">
+              <h4>반복문</h4>
+              <p>반복문으로 작업 자동화</p>
+            </div>
+          </div>
+          <div class="curriculum-item">
+            <span class="curriculum-number">10</span>
+            <div class="curriculum-content">
+              <h4>함수</h4>
+              <p>함수로 코드 정리 및 재사용</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="section pricing" id="pricing">
+    <div class="container">
+      <h2 class="section-title">합리적인 요금으로 시작하세요</h2>
+      <p class="section-subtitle">학원 규모에 맞는 플랜을 선택하세요</p>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3 class="pricing-name">STARTER</h3>
+            <div class="pricing-price">
+              <span class="price-currency">₩</span>
+              <span class="price-amount">49,000</span>
+              <span class="price-period">/월</span>
+            </div>
+          </div>
+          <ul class="pricing-features">
+            <li>학생 10명까지</li>
+            <li>클래스 2개</li>
+            <li>기본 AI 기능</li>
+            <li>이메일 지원</li>
+          </ul>
+          <a href="#final-cta" class="btn btn-secondary pricing-btn">시작하기</a>
+        </div>
+        <div class="pricing-card featured">
+          <span class="pricing-badge">⭐ 추천</span>
+          <div class="pricing-header">
+            <h3 class="pricing-name">STANDARD</h3>
+            <div class="pricing-price">
+              <span class="price-currency">₩</span>
+              <span class="price-amount">99,000</span>
+              <span class="price-period">/월</span>
+            </div>
+          </div>
+          <ul class="pricing-features">
+            <li>학생 30명까지</li>
+            <li>클래스 5개</li>
+            <li>전체 AI 기능</li>
+            <li>우선 지원</li>
+          </ul>
+          <a href="#final-cta" class="btn btn-primary pricing-btn">시작하기</a>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3 class="pricing-name">PREMIUM</h3>
+            <div class="pricing-price">
+              <span class="price-currency">₩</span>
+              <span class="price-amount">199,000</span>
+              <span class="price-period">/월</span>
+            </div>
+          </div>
+          <ul class="pricing-features">
+            <li>학생 무제한</li>
+            <li>클래스 무제한</li>
+            <li>전체 AI 기능</li>
+            <li>전담 매니저</li>
+            <li>맞춤 커리큘럼</li>
+          </ul>
+          <a href="#final-cta" class="btn btn-secondary pricing-btn">문의하기</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section testimonials" id="testimonials">
+    <div class="container">
+      <h2 class="section-title">이미 많은 학원에서 사용하고 있습니다</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-text">"학생들이 별을 모으려고 문제를 더 많이 풀어요. 자동 채점 덕분에 수업 준비 시간이 절반으로 줄었습니다."</p>
+          <div class="testimonial-author">
+            <span class="author-name">김○○ 원장</span>
+            <span class="author-company">○○코딩학원</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">"AI 힌트 기능이 정말 좋아요. 학생들이 막혔을 때 바로 도움을 받을 수 있어서 수업 흐름이 끊기지 않습니다."</p>
+          <div class="testimonial-author">
+            <span class="author-name">이○○ 강사</span>
+            <span class="author-company">△△코딩교육센터</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">"대시보드에서 학생들 진도를 한눈에 볼 수 있어서 관리가 훨씬 편해졌어요. 학부모님께 설명드리기도 좋고요."</p>
+          <div class="testimonial-author">
+            <span class="author-name">박○○ 원장</span>
+            <span class="author-company">□□프로그래밍학원</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section faq" id="faq">
+    <div class="container">
+      <h2 class="section-title">자주 묻는 질문</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>무료 체험이 가능한가요?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>네, 14일간 모든 기능을 무료로 체험하실 수 있습니다.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>학생들이 직접 가입하나요?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>아니요, 관리자가 학생 계정을 생성하고 비밀번호를 안내합니다.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>문제를 직접 만들 수 있나요?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>관리자 권한으로 문제와 테스트케이스를 직접 추가할 수 있습니다.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>어떤 기기에서 사용할 수 있나요?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>PC, 태블릿, 스마트폰 등 모든 기기에서 사용 가능합니다.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>데이터는 안전한가요?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Supabase 기반으로 데이터가 안전하게 보호됩니다.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>기존 학원 관리 프로그램과 연동되나요?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>현재 독립 운영되며, API 연동은 문의 주세요.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="section final-cta" id="final-cta">
+    <div class="container">
+      <div class="final-cta-content">
+        <span class="final-cta-icon">🚀</span>
+        <h2 class="final-cta-title">지금 바로 시작하세요</h2>
+        <p class="final-cta-text">코딩 교육의 새로운 기준을 경험해보세요</p>
+        <a href="https://www.lets-coding-play.com" class="btn btn-primary btn-xl" target="_blank" rel="noopener noreferrer">14일 무료 체험 시작하기</a>
+        <p class="final-cta-note">💳 신용카드 없이 시작 가능</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="footer-logo">
+            <span class="logo-icon">🚀</span>
+            <span class="logo-text">Let's Coding & Play</span>
+          </a>
+          <p class="footer-description">AI와 함께하는 스마트한 코딩 교육</p>
+        </div>
+        <div class="footer-links">
+          <h4 class="footer-title">제품</h4>
+          <a href="#features">기능</a>
+          <a href="#pricing">요금제</a>
+          <a href="#curriculum">커리큘럼</a>
+        </div>
+        <div class="footer-links">
+          <h4 class="footer-title">회사</h4>
+          <a href="#">회사 소개</a>
+          <a href="#">블로그</a>
+          <a href="#">채용</a>
+        </div>
+        <div class="footer-links">
+          <h4 class="footer-title">지원</h4>
+          <a href="#">고객센터</a>
+          <a href="#">이용약관</a>
+          <a href="#">개인정보처리방침</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Let's Coding & Play. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/landing.js"></script>
+</body>
+</html>
