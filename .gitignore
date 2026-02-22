@@ -3,6 +3,10 @@
 .env.local
 .env.*.local
 
+# Build output
+dist/
+*.tsbuildinfo
+
 # Vercel
 .vercel
 
