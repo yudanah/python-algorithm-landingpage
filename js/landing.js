@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
   initPixelArt();
   initScrollAnimations();
   initNavbarScroll();
+  initStrengthsTabs();
+  initContactForm();
 });
 
 /**
@@ -167,7 +169,7 @@ function initScrollAnimations() {
   });
 
   // Add fade-in to cards with delay
-  const cards = document.querySelectorAll('.feature-card, .pain-card, .pricing-card, .testimonial-card');
+  const cards = document.querySelectorAll('.feature-card, .pain-card, .strength-card, .gamification-card, .testimonial-card');
   cards.forEach((card, index) => {
     card.style.transitionDelay = `${index * 0.1}s`;
     card.classList.add('fade-in');
@@ -186,6 +188,87 @@ function initNavbarScroll() {
       navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
     } else {
       navbar.style.boxShadow = 'none';
+    }
+  });
+}
+
+/**
+ * Strengths Section Tab Switching
+ */
+function initStrengthsTabs() {
+  const tabBtns = document.querySelectorAll('.strength-tab-btn');
+  const tabContents = document.querySelectorAll('.strengths .tab-content');
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const targetTab = this.getAttribute('data-tab');
+
+      // Update buttons
+      tabBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+
+      // Update content
+      tabContents.forEach(content => {
+        if (content.getAttribute('data-tab') === targetTab) {
+          content.classList.add('active');
+        } else {
+          content.classList.remove('active');
+        }
+      });
+    });
+  });
+}
+
+/**
+ * Contact Form Submission
+ */
+function initContactForm() {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const phone = document.getElementById('contact-phone').value.trim();
+    const message = document.getElementById('contact-message').value.trim();
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const successEl = document.getElementById('contact-success');
+    const errorEl = document.getElementById('contact-error');
+
+    // Hide previous messages
+    successEl.classList.remove('show');
+    errorEl.classList.remove('show');
+
+    // Validate
+    if (!phone || !message) {
+      errorEl.textContent = '전화번호와 문의 내용을 모두 입력해주세요.';
+      errorEl.classList.add('show');
+      return;
+    }
+
+    // Disable button
+    submitBtn.disabled = true;
+    submitBtn.textContent = '전송 중...';
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone, message })
+      });
+
+      if (response.ok) {
+        successEl.classList.add('show');
+        form.reset();
+      } else {
+        throw new Error('Server error');
+      }
+    } catch (err) {
+      errorEl.textContent = '전송에 실패했습니다. contact@letscoding.co.kr로 직접 문의해주세요.';
+      errorEl.classList.add('show');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = '문의하기';
     }
   });
 }
