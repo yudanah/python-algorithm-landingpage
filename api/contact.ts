@@ -40,22 +40,29 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(500).json({ error: 'DB 저장 실패' });
     }
 
-    // 2. Resend로 알림 이메일 발송
-    await resend.emails.send({
-      from: `${process.env.RESEND_FROM_NAME} <${process.env.RESEND_FROM_EMAIL}>`,
-      to: process.env.RESEND_FROM_EMAIL!,
-      subject: `[도입문의] 새로운 문의가 접수되었습니다`,
-      html: `
-        <h2>새로운 도입문의</h2>
-        <p><strong>전화번호:</strong> ${phone}</p>
-        <p><strong>문의 내용:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
-        <hr>
-        <p style="color: #666; font-size: 12px;">
-          Let's Coding & Play 랜딩페이지에서 접수된 문의입니다.
-        </p>
-      `,
-    });
+    // 2. Resend로 알림 이메일 발송 (실패해도 문의 접수는 완료)
+    try {
+      const { error: emailError } = await resend.emails.send({
+        from: `${process.env.RESEND_FROM_NAME} <${process.env.RESEND_FROM_EMAIL}>`,
+        to: process.env.RESEND_FROM_EMAIL!,
+        subject: `[도입문의] 새로운 문의가 접수되었습니다`,
+        html: `
+          <h2>새로운 도입문의</h2>
+          <p><strong>전화번호:</strong> ${phone}</p>
+          <p><strong>문의 내용:</strong></p>
+          <p>${message.replace(/\n/g, '<br>')}</p>
+          <hr>
+          <p style="color: #666; font-size: 12px;">
+            Let's Coding & Play 랜딩페이지에서 접수된 문의입니다.
+          </p>
+        `,
+      });
+      if (emailError) {
+        console.error('Resend email error:', emailError);
+      }
+    } catch (emailErr) {
+      console.error('Resend send failed:', emailErr);
+    }
 
     return res.status(200).json({ success: true });
   } catch (error) {
