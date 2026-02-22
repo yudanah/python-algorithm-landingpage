@@ -1,51 +1,96 @@
-import { useState, useEffect } from 'react'
-import MobileMenu from './MobileMenu'
+import { useState, useEffect, useCallback } from 'react'
 
-export default function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+interface Props {
+  bannerVisible: boolean
+  onOpenContact: () => void
+}
+
+const NAV_ITEMS = [
+  { label: '기능 소개', target: 'features' },
+  { label: '교사/기관', target: 'educators' },
+  { label: '요금', target: 'pricing' },
+]
+
+export default function Navbar({ bannerVisible, onOpenContact }: Props) {
   const [scrolled, setScrolled] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('')
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    const onScroll = () => setScrolled(window.scrollY > 10)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id)
-    if (el) {
-      const navbarHeight = document.getElementById('navbar')?.offsetHeight || 70
-      const top = el.getBoundingClientRect().top + window.pageYOffset - navbarHeight
-      window.scrollTo({ top, behavior: 'smooth' })
-    }
-    setMobileMenuOpen(false)
-  }
+  useEffect(() => {
+    const sections = NAV_ITEMS.map(item => document.getElementById(item.target)).filter(Boolean) as HTMLElement[]
+    const observer = new IntersectionObserver(
+      entries => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
+          }
+        }
+      },
+      { rootMargin: '-30% 0px -60% 0px' }
+    )
+    sections.forEach(s => observer.observe(s))
+    return () => observer.disconnect()
+  }, [])
+
+  const scrollTo = useCallback((id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    setMobileOpen(false)
+  }, [])
+
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    setMobileOpen(false)
+  }, [])
 
   return (
     <>
-      <nav className="navbar" id="navbar" style={{ boxShadow: scrolled ? '0 2px 10px rgba(0, 0, 0, 0.1)' : 'none' }}>
-        <div className="container navbar-container">
-          <a href="#" className="logo">
-            <span className="logo-icon">🚀</span>
-            <span className="logo-text">Let's Coding &amp; Play</span>
-          </a>
-          <div className="nav-links" id="nav-links">
-            <a href="#features" className="nav-link" onClick={(e) => { e.preventDefault(); scrollTo('features') }}>기능</a>
-            <a href="#curriculum" className="nav-link" onClick={(e) => { e.preventDefault(); scrollTo('curriculum') }}>커리큘럼</a>
-            <a href="#faq" className="nav-link" onClick={(e) => { e.preventDefault(); scrollTo('faq') }}>FAQ</a>
+      <nav className={`navbar${bannerVisible ? '' : ' no-banner'}${scrolled ? ' scrolled' : ''}`}>
+        <div className="container navbar-inner">
+          <div className="navbar-logo" onClick={scrollToTop} role="button" tabIndex={0}>
+            Let's <span>Coding</span>
           </div>
-          <div className="nav-cta-group">
-            <a href="https://python.letscoding.co.kr" className="btn btn-secondary nav-cta" target="_blank" rel="noopener noreferrer">체험하기</a>
-            <a href="#contact" className="btn btn-primary nav-cta" onClick={(e) => { e.preventDefault(); scrollTo('contact') }}>도입문의</a>
+
+          <div className="navbar-links">
+            {NAV_ITEMS.map(item => (
+              <button
+                key={item.target}
+                className={`navbar-link${activeSection === item.target ? ' active' : ''}`}
+                onClick={() => scrollTo(item.target)}
+              >
+                {item.label}
+              </button>
+            ))}
+            <button className="navbar-cta desktop-only" onClick={onOpenContact}>
+              도입 문의
+            </button>
           </div>
-          <button className={`mobile-menu-btn${mobileMenuOpen ? ' active' : ''}`} id="mobile-menu-btn" aria-label="메뉴 열기" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            <span></span>
-            <span></span>
-            <span></span>
+
+          <button
+            className={`hamburger${mobileOpen ? ' open' : ''}`}
+            onClick={() => setMobileOpen(v => !v)}
+            aria-label="메뉴"
+          >
+            <span /><span /><span />
           </button>
         </div>
       </nav>
-      <MobileMenu isOpen={mobileMenuOpen} onNavigate={scrollTo} />
+
+      <div className={`mobile-menu${mobileOpen ? ' open' : ''}${bannerVisible ? '' : ' no-banner'}`}>
+        {NAV_ITEMS.map(item => (
+          <button key={item.target} className="mobile-menu-link" onClick={() => scrollTo(item.target)}>
+            {item.label}
+          </button>
+        ))}
+        <button className="mobile-menu-cta" onClick={() => { onOpenContact(); setMobileOpen(false); }}>
+          도입 문의
+        </button>
+      </div>
     </>
   )
 }

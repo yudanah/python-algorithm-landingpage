@@ -1,30 +1,39 @@
-export default function Footer() {
+interface Props {
+  onOpenContact: () => void
+}
+
+export default function Footer({ onOpenContact }: Props) {
   return (
     <footer className="footer">
       <div className="container">
-        <div className="footer-grid" style={{ gridTemplateColumns: '2fr 1fr 1fr' }}>
+        <div className="footer-grid">
           <div className="footer-brand">
-            <a href="#" className="footer-logo">
-              <span className="logo-icon">🚀</span>
-              <span className="logo-text">Let's Coding &amp; Play</span>
-            </a>
-            <p className="footer-description">AI와 함께하는 스마트한 코딩 교육</p>
+            <div className="footer-logo">LET'S <span>CODING</span></div>
+            <p>입문자를 위한 최고의 파이썬 교육 플랫폼.<br />렛츠코딩앤플레이</p>
           </div>
-          <div className="footer-links">
-            <h4 className="footer-title">제품</h4>
-            <a href="#features">기능</a>
-            <a href="#curriculum">커리큘럼</a>
-            <a href="#faq">FAQ</a>
+          <div className="footer-col">
+            <h4>서비스</h4>
+            <a href="https://python.letscoding.co.kr" target="_blank" rel="noopener noreferrer">학습 플랫폼</a>
+            <a href="#features">기능 소개</a>
           </div>
-          <div className="footer-links">
-            <h4 className="footer-title">지원 &amp; 연락처</h4>
+          <div className="footer-col">
+            <h4>고객지원</h4>
+            <button
+              onClick={onOpenContact}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'block', fontSize: '0.875rem', color: 'rgba(255,255,255,0.6)', padding: '0.25rem 0', fontFamily: 'inherit', textAlign: 'left' }}
+            >
+              도입 문의
+            </button>
+            <a href="mailto:contact@letscoding.co.kr">이메일 문의</a>
+          </div>
+          <div className="footer-col">
+            <h4>법률</h4>
             <a href="#">이용약관</a>
             <a href="#">개인정보처리방침</a>
-            <a href="mailto:contact@letscoding.co.kr">contact@letscoding.co.kr</a>
           </div>
         </div>
         <div className="footer-bottom">
-          <p>&copy; 2026 Let's Coding &amp; Play. All rights reserved.</p>
+          <p>&copy; 2026 렛츠코딩앤플레이. All rights reserved.</p>
         </div>
       </div>
     </footer>

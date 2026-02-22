@@ -1,35 +1,27 @@
 import { useEffect, useRef } from 'react'
 
-export function useScrollAnimation(delay = 0) {
+export function useScrollAnimation() {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const el = ref.current
     if (!el) return
 
-    el.classList.add('fade-in')
-    if (delay > 0) {
-      el.style.transitionDelay = `${delay}s`
-    }
+    el.classList.add('fade-up')
 
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible')
-            observer.unobserve(entry.target)
-          }
-        })
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add('visible')
+          observer.unobserve(el)
+        }
       },
       { threshold: 0.1 }
     )
 
     observer.observe(el)
-
-    return () => {
-      observer.disconnect()
-    }
-  }, [delay])
+    return () => observer.disconnect()
+  }, [])
 
   return ref
 }

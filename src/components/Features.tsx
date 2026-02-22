@@ -1,62 +1,46 @@
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
 
+const FEATURES = [
+  {
+    icon: '\uD83D\uDCDA',
+    title: '단계별 문제 풀이',
+    desc: '출력부터 함수까지 8단계 입문 커리큘럼. 나나쌤 영상과 코드 작성, AI 나나의 도움까지.',
+  },
+  {
+    icon: '\uD83E\uDD16',
+    title: 'AI 튜터',
+    desc: '막힐 때 AI가 힌트 제공, 코드 리뷰, 개념 설명, 풀이 비교까지. 1:1 채팅 튜터링도 지원.',
+  },
+  {
+    icon: '\u2328\uFE0F',
+    title: '타자연습',
+    desc: 'Python 키워드로 구성된 100단계 타자 게임. 코딩에 필요한 특수문자 타이핑까지 자연스럽게.',
+  },
+  {
+    icon: '\uD83C\uDF10',
+    title: '모두의 문제',
+    desc: '학생이 직접 문제를 만들고 친구들이 풀 수 있는 커뮤니티. AI가 난이도를 자동 배정.',
+  },
+]
+
 export default function Features() {
-  const sectionRef = useScrollAnimation()
+  const ref = useScrollAnimation()
 
   return (
-    <section className="section features" id="features" ref={sectionRef}>
+    <section className="section" id="features" ref={ref}>
       <div className="container">
-        <h2 className="section-title">코딩 교육에 필요한 모든 것</h2>
-        <p className="section-subtitle">하나의 플랫폼에서 학습, 평가, 관리까지</p>
+        <div className="section-header">
+          <h2>코딩 교육에 필요한 모든 것</h2>
+          <p>하나의 플랫폼에서 학습, 평가, 관리까지</p>
+        </div>
         <div className="features-grid">
-          <div className="feature-card">
-            <div className="feature-icon">💻</div>
-            <h3 className="feature-title">온라인 코드 에디터</h3>
-            <p className="feature-text">설치 없이 브라우저에서 바로 Python 코드 작성 및 실행</p>
-            <span className="feature-tag">CodeMirror, 문법 하이라이팅</span>
-          </div>
-          <div className="feature-card">
-            <div className="feature-icon">✅</div>
-            <h3 className="feature-title">자동 채점 시스템</h3>
-            <p className="feature-text">테스트케이스 기반 즉각적인 정답 확인으로 선생님 부담 감소</p>
-            <span className="feature-tag">실시간 채점, 5초 타임아웃</span>
-          </div>
-          <div className="feature-card">
-            <div className="feature-icon">🤖</div>
-            <h3 className="feature-title">AI 학습 지원</h3>
-            <p className="feature-text">막힐 때 AI가 힌트를 주고, 제출한 코드를 리뷰해줍니다</p>
-            <span className="feature-tag">Claude AI, 개인 맞춤형</span>
-          </div>
-          <div className="feature-card">
-            <div className="feature-icon">⭐</div>
-            <h3 className="feature-title">게이미피케이션</h3>
-            <p className="feature-text">문제를 풀면 별을 획득! 은색별 → 금색별로 레벨업</p>
-            <span className="feature-tag">동기 부여, 성취감</span>
-          </div>
-          <div className="feature-card">
-            <div className="feature-icon">⌨️</div>
-            <h3 className="feature-title">타자연습</h3>
-            <p className="feature-text">Python 코딩 표현식으로 100스테이지 타자 게임 + 일일 랭킹</p>
-            <span className="feature-tag">코딩 타자, 기관별 리더보드</span>
-          </div>
-          <div className="feature-card">
-            <div className="feature-icon">🌐</div>
-            <h3 className="feature-title">모두의 문제</h3>
-            <p className="feature-text">학생이 직접 문제를 만들고, AI가 난이도를 자동 분류</p>
-            <span className="feature-tag">커뮤니티, Lv.1~10</span>
-          </div>
-          <div className="feature-card">
-            <div className="feature-icon">📊</div>
-            <h3 className="feature-title">실시간 대시보드</h3>
-            <p className="feature-text">클래스별 학생 진행 상황을 한눈에 파악</p>
-            <span className="feature-tag">실시간 모니터링, 리포트</span>
-          </div>
-          <div className="feature-card">
-            <div className="feature-icon">🎬</div>
-            <h3 className="feature-title">동영상 문법 강의</h3>
-            <p className="feature-text">문법 주제별 영상 자료를 문제 풀이와 함께 제공</p>
-            <span className="feature-tag">Bunny Stream, 지도안</span>
-          </div>
+          {FEATURES.map((f, i) => (
+            <div className="feature-card" key={i}>
+              <div className="feature-icon">{f.icon}</div>
+              <h3>{f.title}</h3>
+              <p>{f.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

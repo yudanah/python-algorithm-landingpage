@@ -1,40 +1,34 @@
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
 
+const STEPS = [
+  { num: 1, title: '문제 선택', desc: '레벨별로 원하는 문제를 골라요' },
+  { num: 2, title: '코드 작성', desc: '에디터에서 Python 코드를 작성해요' },
+  { num: 3, title: '실행 & 채점', desc: '테스트 케이스로 자동 채점해요' },
+  { num: 4, title: 'AI 피드백', desc: '틀리면 AI가 힌트와 설명을 줘요' },
+  { num: 5, title: '성장 기록', desc: '진행상황이 자동으로 기록돼요' },
+]
+
 export default function HowItWorks() {
-  const sectionRef = useScrollAnimation()
+  const ref = useScrollAnimation()
 
   return (
-    <section className="section how-it-works" id="how-it-works" ref={sectionRef}>
+    <section className="section section-gray" id="how-it-works" ref={ref}>
       <div className="container">
-        <h2 className="section-title">3단계로 시작하세요</h2>
-        <p className="section-subtitle">복잡한 설정 없이, 도입 문의 후 바로 시작 가능</p>
-        <div className="steps">
-          <div className="step">
-            <div className="step-number">1</div>
-            <div className="step-content">
-              <h3 className="step-title">도입 문의</h3>
-              <p className="step-text">전화번호와 문의 내용을 남겨주시면 담당자가 연락드립니다</p>
-              <span className="step-time">1분</span>
+        <div className="section-header">
+          <h2>이렇게 학습해요</h2>
+          <p>문제를 풀고, 피드백을 받고, 성장하는 과정</p>
+        </div>
+        <div className="steps-container">
+          {STEPS.map(s => (
+            <div className="step" key={s.num}>
+              <div className="step-number">{s.num}</div>
+              <div>
+                <h3>{s.title}</h3>
+                <p>{s.desc}</p>
+              </div>
+              <div className="step-connector" />
             </div>
-          </div>
-          <div className="step-line"></div>
-          <div className="step">
-            <div className="step-number">2</div>
-            <div className="step-content">
-              <h3 className="step-title">기관 셋업</h3>
-              <p className="step-text">학원/학교 정보 등록, 클래스 생성, 학생 계정 생성</p>
-              <span className="step-time">10분</span>
-            </div>
-          </div>
-          <div className="step-line"></div>
-          <div className="step">
-            <div className="step-number">3</div>
-            <div className="step-content">
-              <h3 className="step-title">학습 시작</h3>
-              <p className="step-text">학생은 문제를 풀고, 선생님은 실시간으로 확인합니다</p>
-              <span className="step-time">즉시</span>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
