@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react'
+import { Analytics } from '@vercel/analytics/react'
 import TopBanner from './components/TopBanner'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -34,6 +35,8 @@ export default function App() {
       <div className="mobile-cta-bar">
         <button onClick={openContact}>도입 문의하기</button>
       </div>
+
+      <Analytics />
     </>
   )
 }
