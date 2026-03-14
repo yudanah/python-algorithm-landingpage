@@ -1,24 +1,2096 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Let's Coding - 초등~고등 파이썬 코딩 학습 플랫폼 | AI 튜터</title>
-  <meta name="description" content="단계별 파이썬 문제 풀이, AI 튜터 힌트, 타자연습, 학생 관리 대시보드까지. 학원·학교를 위한 코딩 교육 플랫폼.">
-  <meta name="keywords" content="코딩교육, 파이썬학습, 알고리즘, AI튜터, 학원코딩, 초등코딩, 중등코딩">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>렛츠코딩 — Python Algorithm Learning Platform</title>
+    <meta name="description" content="단계별 파이썬 문제 풀이, AI 튜터, 학생 관리까지 하나로. 학원과 학교를 위한 파이썬 학습 플랫폼.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* ── Tokens ─────────────────────────────────────────────── */
+        :root {
+            --bg:          #ffffff;
+            --bg-alt:      #f8fafc;
+            --bg-blue:     #eff6ff;
+            --primary:     #2563eb;
+            --primary-hov: #1d4ed8;
+            --primary-lt:  #dbeafe;
+            --text:        #0f172a;
+            --text-2:      #475569;
+            --text-3:      #94a3b8;
+            --border:      #e2e8f0;
+            --border-md:   #cbd5e1;
+            --green:       #10b981;
+            --amber:       #f59e0b;
+            --font:        "Noto Sans KR", "Malgun Gothic", sans-serif;
+            --container:   1180px;
+            --nav-h:       64px;
+            --r-sm:        8px;
+            --r-md:        12px;
+            --r-lg:        16px;
+            --r-xl:        20px;
+            --r-2xl:       28px;
+        }
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Let's Coding - 파이썬 코딩 학습 플랫폼">
-  <meta property="og:description" content="AI 튜터와 함께하는 단계별 파이썬 학습. 학원·학교 도입 문의.">
-  <meta property="og:url" content="https://letscoding.co.kr">
-  <meta property="og:type" content="website">
+        /* ── Reset ──────────────────────────────────────────────── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--font); background: var(--bg); color: var(--text); overflow-x: hidden; }
+        a { color: inherit; text-decoration: none; }
+        button { font-family: inherit; cursor: pointer; border: 0; }
+        img { max-width: 100%; display: block; }
 
-  <!-- Fonts -->
-  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
+        /* ── Layout ─────────────────────────────────────────────── */
+        .wrap {
+            width: min(100%, var(--container));
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        section { position: relative; }
+        .sec {
+            padding: 96px 0;
+        }
+        .sec-alt { background: var(--bg-alt); }
+
+        /* ── Typography helpers ──────────────────────────────────── */
+        .label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--primary);
+        }
+        .label::before {
+            content: '';
+            display: block;
+            width: 14px;
+            height: 1.5px;
+            background: var(--primary);
+            flex-shrink: 0;
+        }
+        .sec-title {
+            font-size: clamp(28px, 3.5vw, 44px);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            color: var(--text);
+            margin-top: 12px;
+        }
+        .sec-sub {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-2);
+            margin-top: 12px;
+        }
+        .sec-head {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 0;
+            margin-bottom: 52px;
+        }
+
+        /* ── Nav ─────────────────────────────────────────────────── */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            height: var(--nav-h);
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(16px) saturate(160%);
+            -webkit-backdrop-filter: blur(16px) saturate(160%);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            transition: box-shadow 0.2s;
+        }
+        .site-header.scrolled { box-shadow: 0 1px 20px rgba(15,23,42,0.06); }
+        .nav {
+            width: min(100%, var(--container));
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-weight: 800;
+            font-size: 17px;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            flex-shrink: 0;
+        }
+        .brand-mark {
+            font-family: 'Orbitron', 'Noto Sans KR', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--text);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+        .nav-link {
+            padding: 7px 13px;
+            border-radius: var(--r-md);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-2);
+            transition: color 0.15s, background 0.15s;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--text); background: var(--bg-alt); }
+        .nav-link.active { color: var(--primary); }
+        .nav-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+        .btn-ghost {
+            padding: 8px 15px;
+            border-radius: var(--r-md);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-2);
+            border: 1px solid var(--border);
+            background: transparent;
+            transition: color 0.15s, border-color 0.15s;
+        }
+        .btn-ghost:hover { color: var(--text); border-color: var(--border-md); }
+        .btn-primary {
+            padding: 9px 17px;
+            border-radius: var(--r-md);
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            background: var(--primary);
+            transition: background 0.15s, transform 0.15s;
+        }
+        .btn-primary:hover { background: var(--primary-hov); transform: translateY(-1px); }
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 36px;
+            height: 36px;
+            border-radius: var(--r-sm);
+            background: transparent;
+            padding: 7px;
+            transition: background 0.15s;
+        }
+        .nav-hamburger:hover { background: var(--bg-alt); }
+        .nav-hamburger span {
+            display: block;
+            height: 1.5px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+        .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+        .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+        .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 90;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(16px);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 24px;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu .nav-link { font-size: 20px; font-weight: 700; padding: 14px 24px; color: var(--text-2); width: 100%; text-align: center; }
+        .mobile-menu .btn-primary { margin-top: 12px; padding: 14px 32px; font-size: 15px; width: 100%; text-align: center; border-radius: var(--r-lg); }
+
+        /* ── Hero ────────────────────────────────────────────────── */
+        #hero {
+            background:
+                radial-gradient(ellipse 80% 60% at 50% 0%, rgba(37,99,235,0.10) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 80% 20%, rgba(99,102,241,0.07) 0%, transparent 50%),
+                radial-gradient(ellipse 50% 40% at 20% 30%, rgba(37,99,235,0.05) 0%, transparent 50%),
+                var(--bg);
+            padding: 88px 0 92px;
+        }
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 1fr;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .hero-p { margin-left: auto; margin-right: auto; }
+        .hero-actions { justify-content: center; }
+        .hero-h1 {
+            font-size: clamp(38px, 5vw, 62px);
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            line-height: 1.3;
+            color: var(--text);
+        }
+        .hero-h1 em {
+            font-style: normal;
+            color: var(--primary);
+        }
+        .hero-p {
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--text-2);
+            margin-top: 20px;
+            max-width: 560px;
+        }
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 56px;
+        }
+        .hero-btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 13px 22px;
+            border-radius: var(--r-lg);
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            background: var(--primary);
+            transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+            box-shadow: 0 2px 16px rgba(37,99,235,0.22);
+        }
+        .hero-btn-primary:hover {
+            background: var(--primary-hov);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(37,99,235,0.3);
+        }
+        .hero-btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 13px 22px;
+            border-radius: var(--r-lg);
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-2);
+            border: 1px solid var(--border);
+            transition: color 0.15s, border-color 0.15s, transform 0.15s;
+        }
+        .hero-btn-secondary:hover { color: var(--text); border-color: var(--border-md); transform: translateY(-2px); }
+
+        /* Hero roles */
+        .hero-roles {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 48px;
+            text-align: left;
+        }
+        .hero-role {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--text-2);
+            padding: 24px;
+            background: var(--bg-alt);
+            border-radius: var(--r-xl);
+            border: none;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .hero-role:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(15,23,42,0.06);
+        }
+        .hero-role-icon {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--r-md);
+            margin-bottom: 14px;
+            flex-shrink: 0;
+        }
+        .hero-role-icon svg {
+            width: 22px;
+            height: 22px;
+        }
+        .hero-role--student .hero-role-icon { background: #dbeafe; color: #2563eb; }
+        .hero-role--teacher .hero-role-icon { background: #d1fae5; color: #059669; }
+        .hero-role--org .hero-role-icon { background: #fef3c7; color: #d97706; }
+        .hero-role--parent .hero-role-icon { background: #ede9fe; color: #7c3aed; }
+        .hero-role-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+        .hero-role p {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.65;
+            word-break: keep-all;
+        }
+        .hero-role strong {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        /* Hero stat row */
+        .hero-stats {
+            display: flex;
+            gap: 0;
+            margin-top: 44px;
+            border: 1px solid var(--border);
+            border-radius: var(--r-lg);
+            overflow: hidden;
+        }
+        .hero-stat {
+            flex: 1;
+            padding: 16px 20px;
+            border-right: 1px solid var(--border);
+        }
+        .hero-stat:last-child { border-right: 0; }
+        .hero-stat-val {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--text);
+        }
+        .hero-stat-label {
+            font-size: 12px;
+            color: var(--text-3);
+            margin-top: 3px;
+            line-height: 1.5;
+        }
+
+        /* ── Testimonials ────────────────────────────────────────── */
+        .testimonials {
+            overflow: hidden;
+            background: var(--bg-alt);
+        }
+        .testimonials-track {
+            display: flex;
+            gap: 24px;
+            animation: scroll-x 60s linear infinite;
+            width: max-content;
+        }
+        .testimonials-track:hover { animation-play-state: paused; }
+        @keyframes scroll-x {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .testimonial-card {
+            flex-shrink: 0;
+            width: 340px;
+            padding: 28px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--r-lg);
+            display: flex;
+            flex-direction: column;
+            min-height: 200px;
+        }
+        .testimonial-text { flex: 1; }
+        .testimonial-text {
+            font-size: 15px;
+            line-height: 1.75;
+            color: var(--text-2);
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 18px;
+        }
+        .testimonial-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--primary-lt);
+            display: grid;
+            place-items: center;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .testimonial-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text);
+        }
+        .testimonial-role {
+            font-size: 12px;
+            color: var(--text-3);
+        }
+
+        /* ── Features ────────────────────────────────────────────── */
+        .features-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 64px;
+        }
+        .feature-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: stretch;
+        }
+        .feature-row:nth-child(even) .feature-card { order: 2; }
+        .feature-row:nth-child(even) .feature-screenshot { order: 1; }
+        .feature-card {
+            padding: 0;
+            background: transparent;
+            position: relative;
+        }
+        .feature-screenshot {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-alt);
+            padding: 48px 32px;
+            color: var(--text-3);
+            font-size: 13px;
+            border-radius: var(--r-xl);
+            border: 1px dashed var(--border);
+        }
+        .feature-num {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-3);
+        }
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 16px 0 14px;
+            color: var(--primary);
+        }
+        .feature-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+        .feature-card p {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-2);
+        }
+        .feature-list {
+            list-style: none;
+            margin-top: 16px;
+            display: grid;
+            gap: 10px;
+        }
+        .feature-list li {
+            font-size: 13.5px;
+            line-height: 1.65;
+            color: var(--text-2);
+            padding-left: 20px;
+            position: relative;
+        }
+        .feature-list li strong {
+            color: var(--text);
+            font-weight: 700;
+        }
+        mark {
+            background: linear-gradient(transparent 55%, var(--primary-lt) 55%);
+            color: var(--text);
+            font-weight: 600;
+            padding: 0 2px;
+        }
+        .feature-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--primary);
+            opacity: 0.5;
+        }
+        .feature-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 18px;
+        }
+        .tag {
+            padding: 4px 9px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 600;
+            background: var(--bg-blue);
+            color: var(--primary);
+            border: 1px solid var(--primary-lt);
+        }
+
+        /* ── How It Works ────────────────────────────────────────── */
+        #workflow {
+            background: var(--bg-alt);
+            position: relative;
+        }
+        #workflow::after {
+            content: '';
+            position: absolute;
+            bottom: -48px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 64px;
+            height: 64px;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .sec-bridge {
+            height: 80px;
+            background: linear-gradient(to bottom, var(--bg-alt), var(--bg));
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .sec-bridge::before {
+            content: '';
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--border), transparent);
+        }
+        .steps-row {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 32px;
+        }
+        .step-card {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .step-icon {
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+        .step-num {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 10px;
+            letter-spacing: 0.05em;
+        }
+        .step-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 10px;
+            letter-spacing: -0.01em;
+        }
+        .step-card p {
+            font-size: 13px;
+            line-height: 1.7;
+            color: var(--text-2);
+        }
+
+        /* Workflow context block */
+        .workflow-context {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .ctx-card {
+            padding: 28px;
+            border: 1px solid var(--border);
+            border-radius: var(--r-lg);
+            background: var(--bg);
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .ctx-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px;
+            height: 100%;
+            border-radius: 4px 0 0 4px;
+        }
+        .ctx-card:hover {
+            border-color: transparent;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .ctx-card--student::before { background: var(--primary); }
+        .ctx-card--teacher::before { background: #10b981; }
+        .ctx-card--org::before { background: #8b5cf6; }
+        .ctx-card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .ctx-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+        }
+        .ctx-card--student .ctx-icon { background: var(--bg-blue); color: var(--primary); }
+        .ctx-card--teacher .ctx-icon { background: #ecfdf5; color: #10b981; }
+        .ctx-card--org .ctx-icon { background: #f5f3ff; color: #8b5cf6; }
+        .ctx-card h5 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text);
+        }
+        .ctx-card p { font-size: 13px; line-height: 1.65; color: var(--text-2); }
+
+        /* ── For Educators ───────────────────────────────────────── */
+        #educators { background: var(--bg-alt); }
+        .edu-benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .edu-benefit {
+            padding: 28px;
+            border: 1px solid var(--border);
+            border-radius: var(--r-lg);
+            background: var(--bg);
+            transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+        }
+        .edu-benefit:hover {
+            border-color: var(--primary-lt);
+            box-shadow: 0 4px 16px rgba(37,99,235,0.08);
+            transform: translateY(-2px);
+        }
+        .edu-benefit-num {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--primary);
+            background: var(--bg-blue);
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-bottom: 14px;
+        }
+        .edu-benefit h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        .edu-benefit p {
+            font-size: 13.5px;
+            line-height: 1.7;
+            color: var(--text-2);
+        }
+
+        /* ── Pricing ─────────────────────────────────────────────── */
+        #pricing { background: var(--bg); }
+        .pricing-toggle-row {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 6px;
+        }
+        .pricing-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            padding: 3px;
+            border-radius: 999px;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+        }
+        .pricing-toggle-btn {
+            padding: 5px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-3);
+            background: transparent;
+            white-space: nowrap;
+            transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+        }
+        .pricing-toggle-btn.active {
+            background: #fff;
+            color: var(--text);
+            box-shadow: 0 1px 6px rgba(15,23,42,0.1);
+        }
+        .pricing-period-static {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 14px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-3);
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            margin-top: 40px;
+        }
+        .pricing-card {
+            padding: 28px 24px;
+            border: 1px solid var(--border);
+            border-radius: var(--r-xl);
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+        }
+        .pricing-card:hover {
+            border-color: var(--border-md);
+            box-shadow: 0 4px 20px rgba(15,23,42,0.07);
+            transform: translateY(-3px);
+        }
+        .pricing-card.featured {
+            border-color: var(--primary);
+            background: var(--bg);
+            box-shadow: 0 0 0 3px var(--primary-lt), 0 4px 20px rgba(37,99,235,0.1);
+        }
+        .pricing-card.featured:hover {
+            box-shadow: 0 0 0 3px var(--primary-lt), 0 8px 32px rgba(37,99,235,0.16);
+            transform: translateY(-3px);
+        }
+        .plan-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 9px;
+            border-radius: 5px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            width: fit-content;
+        }
+        .badge-trial    { background: var(--bg-alt);    color: var(--text-3);  border: 1px solid var(--border); }
+        .badge-basic    { background: #dbeafe;           color: #1e40af;        border: 1px solid #bfdbfe; }
+        .badge-pro      { background: var(--primary);    color: #fff; }
+        .badge-enterprise { background: #fef3c7;         color: #92400e;        border: 1px solid #fde68a; }
+        .plan-popular {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 8px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 700;
+            background: var(--primary);
+            color: #fff;
+            margin-left: 6px;
+        }
+        .pricing-card h3 {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--text);
+            margin: 14px 0 6px;
+        }
+        .pricing-card-desc {
+            font-size: 13px;
+            color: var(--text-3);
+            line-height: 1.55;
+            min-height: 40px;
+        }
+        .price-block {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            min-height: 100px;
+        }
+        .price-main {
+            font-size: 30px;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            color: var(--text);
+            line-height: 1;
+            margin-top: 20px;
+        }
+        .price-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+        .price-row .price-main { margin-top: 0; }
+        .price-discount {
+            display: none;
+            padding: 3px 8px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 700;
+            background: #fee2e2;
+            color: #dc2626;
+            white-space: nowrap;
+        }
+        .price-discount.show { display: inline-flex; }
+        .price-main.featured-price { color: var(--primary); }
+        .price-unit {
+            font-size: 13px;
+            color: var(--text-3);
+            margin-top: 5px;
+        }
+        .pricing-features {
+            list-style: none;
+            margin-top: 20px;
+            flex: 1;
+            display: grid;
+            gap: 7px;
+        }
+        .pricing-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-2);
+            line-height: 1.55;
+        }
+        .pricing-features li:first-child {
+            font-weight: 700;
+            color: var(--text);
+        }
+        .pricing-features li::before {
+            content: '';
+            display: block;
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='7' fill='%2310b981' opacity='.15'/%3E%3Cpath d='M5 8l2 2 4-4' stroke='%2310b981' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center;
+            margin-top: 1px;
+        }
+        .pricing-features li.muted { color: var(--text-3); }
+        .pricing-features li.muted::before {
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='7' fill='%2394a3b8' opacity='.15'/%3E%3Cpath d='M5 8h6' stroke='%2394a3b8' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center;
+        }
+        .plan-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 20px;
+            padding: 11px 18px;
+            border-radius: var(--r-md);
+            font-size: 14px;
+            font-weight: 700;
+            transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.15s;
+        }
+        .plan-btn:hover { transform: translateY(-1px); }
+        .plan-btn-outline {
+            border: 1.5px solid var(--border-md);
+            color: var(--text-2);
+            background: transparent;
+        }
+        .plan-btn-outline:hover { border-color: var(--primary); color: var(--primary); background: var(--bg-blue); }
+        .plan-btn-primary {
+            background: var(--primary);
+            color: #fff;
+        }
+        .plan-btn-primary:hover { background: var(--primary-hov); }
+        .plan-btn-amber {
+            border: 1.5px solid #fde68a;
+            color: #92400e;
+            background: #fef3c7;
+        }
+        .plan-btn-amber:hover { background: #fde68a; }
+
+        /* ── Contact ─────────────────────────────────────────────── */
+        #contact { background: var(--bg-alt); }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 5fr 7fr;
+            gap: 20px;
+            align-items: start;
+        }
+        .contact-aside {
+            padding: 36px;
+            border: 1px solid var(--primary-lt);
+            border-radius: var(--r-2xl);
+            background: var(--bg-blue);
+            position: sticky;
+            top: calc(var(--nav-h) + 24px);
+        }
+        .contact-aside h2 {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--text);
+            margin: 12px 0 10px;
+            line-height: 1.3;
+        }
+        .contact-aside > p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--text-2);
+        }
+        .contact-checklist {
+            list-style: none;
+            margin-top: 24px;
+            display: grid;
+            gap: 8px;
+        }
+        .contact-checklist li {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            font-size: 13px;
+            color: var(--text-2);
+            line-height: 1.6;
+        }
+        .contact-checklist li::before {
+            content: '';
+            display: block;
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='9' cy='9' r='8' fill='%232563eb' opacity='.12'/%3E%3Cpath d='M5.5 9l2.5 2.5 5-5' stroke='%232563eb' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center;
+            margin-top: 2px;
+        }
+        .contact-form-card {
+            padding: 40px 40px 44px;
+            border: 1px solid var(--border);
+            border-radius: var(--r-2xl);
+            background: var(--bg);
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .field { display: grid; gap: 6px; }
+        .field.full { grid-column: 1 / -1; }
+        .field label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: 0.01em;
+        }
+        .field label .req { color: #dc2626; margin-left: 2px; }
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+            border: 1.5px solid var(--border);
+            border-radius: var(--r-md);
+            padding: 11px 14px;
+            background: var(--bg);
+            font: 15px/1.5 var(--font);
+            color: var(--text);
+            transition: border-color 0.15s, box-shadow 0.15s;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .field select {
+            background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2364748b' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 36px;
+            cursor: pointer;
+        }
+        .field input::placeholder, .field textarea::placeholder { color: var(--text-3); }
+        .field input:focus, .field select:focus, .field textarea:focus {
+            outline: 0;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+        }
+        .field textarea { min-height: 120px; resize: vertical; }
+        .contact-submit {
+            width: 100%;
+            margin-top: 20px;
+            padding: 17px 24px;
+            border-radius: var(--r-md);
+            background: var(--primary);
+            color: #fff;
+            font: 700 15px/1 var(--font);
+            transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+            box-shadow: 0 2px 16px rgba(37,99,235,0.2);
+        }
+        .contact-submit:hover {
+            background: var(--primary-hov);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(37,99,235,0.28);
+        }
+        .form-message {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--green);
+            text-align: center;
+        }
+        .form-message:empty { display: none; }
+        .form-message:not(:empty) { margin-top: 16px; }
+        .form-message.error { color: #ef4444; }
+
+        /* ── Footer ──────────────────────────────────────────────── */
+        .site-footer {
+            border-top: 1px solid var(--border);
+            background: var(--bg);
+        }
+        .footer-inner {
+            width: min(100%, var(--container));
+            margin: 0 auto;
+            padding: 44px 24px 36px;
+        }
+        .footer-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        .footer-brand-row {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 10px;
+        }
+        .footer-desc {
+            font-size: 13px;
+            color: var(--text-3);
+            line-height: 1.65;
+            max-width: 500px;
+        }
+        .footer-nav-group h4 {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-3);
+            margin-bottom: 14px;
+        }
+        .footer-nav-group a {
+            display: block;
+            font-size: 13px;
+            color: var(--text-2);
+            margin-bottom: 9px;
+            transition: color 0.15s;
+        }
+        .footer-nav-group a:hover { color: var(--text); }
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 24px;
+            font-size: 12px;
+            color: var(--text-3);
+        }
+        .footer-legal {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+        .footer-legal a {
+            color: var(--text-3);
+            transition: color 0.15s;
+            position: relative;
+        }
+        .footer-legal a:hover { color: var(--text-2); }
+        .footer-legal a + a::before {
+            content: '';
+            position: absolute;
+            left: -16px;
+            top: 10px;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 12px;
+            background: var(--border);
+        }
+
+        /* ── Animations ──────────────────────────────────────────── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: none;
+        }
+        .reveal-d1 { transition-delay: 0.08s; }
+        .reveal-d2 { transition-delay: 0.16s; }
+        .reveal-d3 { transition-delay: 0.24s; }
+        .reveal-d4 { transition-delay: 0.32s; }
+
+        /* ── Responsive ──────────────────────────────────────────── */
+        @media (max-width: 1080px) {
+            .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+            .proof-grid { grid-template-columns: repeat(2, 1fr); }
+            .steps-row { grid-template-columns: repeat(3, 1fr); }
+            .edu-benefits-grid { grid-template-columns: repeat(2, 1fr); }
+            .contact-grid { grid-template-columns: 1fr; }
+            .contact-aside { position: static; }
+            .workflow-context { grid-template-columns: 1fr 1fr; }
+            .hero-roles { grid-template-columns: repeat(2, 1fr); }
+            .feature-row { gap: 48px; }
+        }
+        @media (max-width: 768px) {
+            .sec { padding: 68px 0; }
+            .sec-head { margin-bottom: 36px; }
+            .nav-links, .nav-right .btn-ghost { display: none; }
+            .nav-hamburger { display: flex; }
+            .feature-row { grid-template-columns: 1fr; gap: 28px; }
+            .feature-row:nth-child(even) .feature-card { order: 0; }
+            .feature-row:nth-child(even) .feature-screenshot { order: 0; }
+            .feature-screenshot { padding: 32px 24px; }
+            .steps-row { grid-template-columns: 1fr 1fr; gap: 24px; }
+            .proof-grid { grid-template-columns: 1fr 1fr; }
+            .footer-top { flex-direction: column; gap: 28px; }
+            .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+            .footer-legal { justify-content: center; }
+            .workflow-context { grid-template-columns: 1fr; }
+            .edu-benefits-grid { grid-template-columns: 1fr; }
+            .hero-roles { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+            .hero-role { padding: 20px; }
+            #hero { padding: 60px 0 68px; }
+            .hero-h1 { font-size: clamp(28px, 5vw, 62px); }
+            .hero-actions { margin-top: 36px; }
+            .contact-form-card { padding: 28px 24px 32px; }
+            .contact-aside { padding: 28px; }
+            .sec-bridge { height: 56px; }
+            .top-banner { font-size: 12px; padding: 8px 40px 8px 16px; }
+            .modal-box { padding: 32px 24px 24px; }
+        }
+        @media (max-width: 520px) {
+            .pricing-grid { grid-template-columns: 1fr; }
+            .hero-stats { flex-direction: column; }
+            .hero-stat { border-right: 0; border-bottom: 1px solid var(--border); }
+            .hero-stat:last-child { border-bottom: 0; }
+            .hero-actions { flex-direction: column; }
+            .hero-btn-primary, .hero-btn-secondary { justify-content: center; }
+            .form-grid { grid-template-columns: 1fr; }
+            .steps-row { grid-template-columns: 1fr; gap: 20px; }
+            .proof-grid { grid-template-columns: 1fr; }
+            .proof-item { border-right: 0 !important; }
+            .hero-roles { grid-template-columns: 1fr; gap: 12px; }
+            .hero-role { padding: 18px; }
+            .features-grid { gap: 40px; }
+            .testimonial-card { width: 280px; padding: 22px; }
+            .sec { padding: 52px 0; }
+            .sec-title { font-size: clamp(24px, 5vw, 44px); }
+            .pricing-card { padding: 24px 20px; }
+            .contact-form-card { padding: 22px 18px 26px; }
+        }
+
+        /* ── Top Banner ─────────────────────────────────────────── */
+        .top-banner {
+            background: var(--primary);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 500;
+            text-align: center;
+            padding: 10px 24px;
+            position: relative;
+            z-index: 101;
+        }
+        .top-banner a { color: #fff; text-decoration: underline; text-underline-offset: 3px; font-weight: 700; }
+        .top-banner-close {
+            position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+            background: none; color: rgba(255,255,255,0.7); font-size: 18px; line-height: 1; padding: 4px 8px; transition: color 0.15s;
+        }
+        .top-banner-close:hover { color: #fff; }
+        .top-banner.hidden { display: none; }
+
+        /* ── Modal ──────────────────────────────────────────────── */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(15,23,42,0.45); backdrop-filter: blur(4px);
+            z-index: 200; display: flex; align-items: center; justify-content: center; padding: 24px;
+        }
+        .modal-overlay.hidden { display: none; }
+        .modal-box {
+            background: #fff; border-radius: var(--r-xl); padding: 40px 36px 32px;
+            max-width: 400px; width: 100%; text-align: center; position: relative;
+            box-shadow: 0 20px 60px rgba(15,23,42,0.18);
+        }
+        .modal-close {
+            position: absolute; top: 14px; right: 14px; background: none;
+            color: var(--text-3); font-size: 20px; padding: 4px 8px; transition: color 0.15s;
+        }
+        .modal-close:hover { color: var(--text); }
+        .modal-emoji { font-size: 48px; margin-bottom: 16px; }
+        .modal-title { font-size: 15px; color: var(--text-2); line-height: 1.7; margin-bottom: 20px; }
+        .modal-title a { color: var(--primary); font-weight: 700; text-decoration: none; }
+        .modal-title a:hover { text-decoration: underline; }
+        .modal-actions { display: flex; gap: 12px; justify-content: center; }
+        .modal-btn { padding: 10px 28px; border-radius: var(--r-md); font-size: 14px; font-weight: 700; transition: background 0.15s, transform 0.15s; }
+        .modal-btn-primary { background: var(--primary); color: #fff; }
+        .modal-btn-primary:hover { background: var(--primary-hov); transform: translateY(-1px); }
+        .modal-btn-ghost { background: transparent; color: var(--text-2); border: 1px solid var(--border); }
+        .modal-btn-ghost:hover { border-color: var(--border-md); color: var(--text); }
+
+    </style>
 </head>
 <body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.tsx"></script>
+
+    <!-- ── Top Banner ──────────────────────────────────────────────── -->
+    <div class="top-banner" id="topBanner">
+        이미 사용 중이신가요? <a href="https://python.letscoding.co.kr" target="_blank" rel="noopener noreferrer">python.letscoding.co.kr 바로가기 &rarr;</a>
+        <button class="top-banner-close" id="topBannerClose" aria-label="닫기">&times;</button>
+    </div>
+
+    <!-- ── URL 변경 안내 Modal ──────────────────────────────────────── -->
+    <div class="modal-overlay" id="urlModal">
+        <div class="modal-box">
+            <button class="modal-close" id="modalClose" aria-label="닫기">&times;</button>
+            <div class="modal-emoji">📢</div>
+            <p class="modal-title">
+                기존 렛츠코딩 사이트의 주소가<br>
+                <a href="https://python.letscoding.co.kr" target="_blank" rel="noopener noreferrer">python.letscoding.co.kr</a>로 변경되었습니다.<br>
+                바로가기 버튼을 눌러서 이동하세요.
+            </p>
+            <div class="modal-actions">
+                <a class="modal-btn modal-btn-primary" href="https://python.letscoding.co.kr" target="_blank" rel="noopener noreferrer">바로가기</a>
+                <button class="modal-btn modal-btn-ghost" id="modalDismiss">닫기</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Nav ──────────────────────────────────────────────────────── -->
+    <header class="site-header" id="siteHeader">
+        <nav class="nav">
+            <a class="brand" href="#hero">
+                <span class="brand-mark">LET'S CODING</span>
+            </a>
+            <div class="nav-links">
+                <a class="nav-link" href="#workflow">학습 흐름</a>
+                <a class="nav-link" href="#features">핵심 기능</a>
+                <a class="nav-link" href="#educators">기대 효과</a>
+                <a class="nav-link" href="#pricing">라이선스</a>
+            </div>
+            <div class="nav-right">
+                <a class="btn-ghost" href="https://python.letscoding.co.kr" target="_blank" rel="noopener noreferrer">학습 사이트 이동</a>
+                <a class="btn-primary" href="#contact">도입 문의</a>
+                <button class="nav-hamburger" id="navHamburger" aria-label="메뉴 열기">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ── Mobile Menu ───────────────────────────────────────────────── -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a class="nav-link" href="#workflow" data-ml>학습 흐름</a>
+        <a class="nav-link" href="#features" data-ml>핵심 기능</a>
+        <a class="nav-link" href="#educators" data-ml>기대 효과</a>
+        <a class="nav-link" href="#pricing" data-ml>라이선스</a>
+        <a class="btn-primary" href="#contact" data-ml>도입 문의</a>
+    </div>
+
+    <main>
+
+        <!-- ── Hero ─────────────────────────────────────────────────── -->
+        <section id="hero">
+            <div class="wrap">
+                <div class="hero-inner reveal">
+                    <h1 class="hero-h1">학생 성장은 <em>선명하게</em>,<br>코딩 수업은 더 단단하게</h1>
+                    <div class="hero-roles">
+                        <div class="hero-role hero-role--student reveal reveal-d1">
+                            <div class="hero-role-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                            </div>
+                            <div>
+                                <div class="hero-role-title">학생은</div>
+                                <p>문제를 고르고, 코드를 쓰고, 막히면 AI에게 물어봅니다</p>
+                            </div>
+                        </div>
+                        <div class="hero-role hero-role--teacher reveal reveal-d2">
+                            <div class="hero-role-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            </div>
+                            <div>
+                                <div class="hero-role-title">선생님은</div>
+                                <p>누가 어디서 막혔는지 실시간으로 보고, 한눈에 확인합니다</p>
+                            </div>
+                        </div>
+                        <div class="hero-role hero-role--org reveal reveal-d3">
+                            <div class="hero-role-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><path d="M12 12v4"/><path d="M2 12h20"/></svg>
+                            </div>
+                            <div>
+                                <div class="hero-role-title">기관은</div>
+                                <p>라이선스, 교사 배정, 피드백까지 한 곳에서 관리합니다</p>
+                            </div>
+                        </div>
+                        <div class="hero-role hero-role--parent reveal reveal-d4">
+                            <div class="hero-role-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            </div>
+                            <div>
+                                <div class="hero-role-title">학부모는</div>
+                                <p>AI 학습 리포트 링크로 자녀의 성장을 직접 확인합니다</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-actions">
+                        <a class="hero-btn-secondary" href="#pricing">라이선스 보기</a>
+                        <a class="hero-btn-primary" href="#contact">
+                            도입 문의하기
+                            <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M3 7.5h9M9 4l3.5 3.5L9 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── How It Works ──────────────────────────────────────────── -->
+        <section id="workflow" class="sec sec-alt">
+            <div class="wrap">
+                <div class="sec-head reveal">
+                    <span class="label">How It Works</span>
+                    <h2 class="sec-title">학습 흐름 5단계</h2>
+                </div>
+                <div class="steps-row reveal">
+                    <div class="step-card">
+                        <div class="step-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                        </div>
+                        <div class="step-num">01</div>
+                        <h4>문제 선택</h4>
+                        <p>레벨과 카테고리별로 문제를 보고 오늘의 학습 구간을 정합니다.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        </div>
+                        <div class="step-num">02</div>
+                        <h4>코드 작성</h4>
+                        <p>에디터에서 코드와 메모를 남기며 풀이를 이어갑니다.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        </div>
+                        <div class="step-num">03</div>
+                        <h4>실행 · 채점</h4>
+                        <p>테스트케이스 기반으로 정답 여부를 빠르게 확인합니다.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a8 8 0 0 1 8 8c0 3-1.5 5.5-4 7v3H8v-3c-2.5-1.5-4-4-4-7a8 8 0 0 1 8-8z"/><path d="M10 22h4"/></svg>
+                        </div>
+                        <div class="step-num">04</div>
+                        <h4>AI 도움</h4>
+                        <p>힌트, 리뷰, 오류 설명으로 막힌 구간을 통과합니다.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <div class="step-num">05</div>
+                        <h4>관리 · 공유</h4>
+                        <p>교사는 진행 상황을 확인하고, 학부모에게 리포트를 공유합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Testimonials ─────────────────────────────────────────── -->
+        <div class="testimonials">
+            <div class="testimonials-track">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"학생들이 AI 힌트를 활용하면서 스스로 문제를 해결하는 횟수가 눈에 띄게 늘었어요."</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">김</div>
+                        <div><div class="testimonial-name">김서연 선생님</div><div class="testimonial-role">코딩 학원 운영</div></div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"반별 진행 현황을 한눈에 볼 수 있어서 수업 준비 시간이 절반으로 줄었습니다."</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">박</div>
+                        <div><div class="testimonial-name">박준호 원장님</div><div class="testimonial-role">SW 교육센터</div></div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"커뮤니티에서 친구들이 만든 문제 풀어보는 게 제일 재밌어요. 나도 문제 만들어봤는데 다른 사람들이 풀어줘서 뿌듯했어요."</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">이</div>
+                        <div><div class="testimonial-name">이하은 학생</div><div class="testimonial-role">중학교 2학년</div></div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"학부모 리포트 공유 기능 덕분에 학부모 상담이 훨씬 수월해졌어요. 데이터로 보여주니까 신뢰도가 올라갑니다."</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">정</div>
+                        <div><div class="testimonial-name">정민수 선생님</div><div class="testimonial-role">방과후 코딩 강사</div></div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"단계별로 문제가 나눠져 있어서 어디서부터 시작해야 할지 고민 없이 바로 풀 수 있었어요."</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">최</div>
+                        <div><div class="testimonial-name">최유진 학생</div><div class="testimonial-role">고등학교 1학년</div></div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"도입 후 한 달 만에 학생 출석률이 30% 올랐습니다. 아이들이 스스로 들어와서 문제를 풀더라구요."</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">한</div>
+                        <div><div class="testimonial-name">한지영 원장님</div><div class="testimonial-role">코딩 교습소</div></div>
+                    </div>
+                </div>
+                <!-- duplicate set for seamless loop -->
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"학생들이 AI 힌트를 활용하면서 스스로 문제를 해결하는 횟수가 눈에 띄게 늘었어요."</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">김</div>
+                        <div><div class="testimonial-name">김서연 선생님</div><div class="testimonial-role">코딩 학원 운영</div></div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"반별 진행 현황을 한눈에 볼 수 있어서 수업 준비 시간이 절반으로 줄었습니다."</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">박</div>
+                        <div><div class="testimonial-name">박준호 원장님</div><div class="testimonial-role">SW 교육센터</div></div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"커뮤니티에서 친구들이 만든 문제 풀어보는 게 제일 재밌어요. 나도 문제 만들어봤는데 다른 사람들이 풀어줘서 뿌듯했어요."</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">이</div>
+                        <div><div class="testimonial-name">이하은 학생</div><div class="testimonial-role">중학교 2학년</div></div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"학부모 리포트 공유 기능 덕분에 학부모 상담이 훨씬 수월해졌어요. 데이터로 보여주니까 신뢰도가 올라갑니다."</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">정</div>
+                        <div><div class="testimonial-name">정민수 선생님</div><div class="testimonial-role">방과후 코딩 강사</div></div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"단계별로 문제가 나눠져 있어서 어디서부터 시작해야 할지 고민 없이 바로 풀 수 있었어요."</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">최</div>
+                        <div><div class="testimonial-name">최유진 학생</div><div class="testimonial-role">고등학교 1학년</div></div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"도입 후 한 달 만에 학생 출석률이 30% 올랐습니다. 아이들이 스스로 들어와서 문제를 풀더라구요."</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">한</div>
+                        <div><div class="testimonial-name">한지영 원장님</div><div class="testimonial-role">코딩 교습소</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sec-bridge"></div>
+
+        <!-- ── Features ─────────────────────────────────────────────── -->
+        <section id="features" class="sec">
+            <div class="wrap">
+                <div class="sec-head reveal">
+                    <span class="label">Product Highlights</span>
+                    <h2 class="sec-title">네 가지 핵심 기능</h2>
+                </div>
+                <div class="features-grid">
+                    <!-- Row 1: 설명 | 스크린샷 -->
+                    <div class="feature-row reveal">
+                        <article class="feature-card">
+                            <div class="feature-num">01 — Learning Flow</div>
+                            <div class="feature-icon">
+                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="4" y="4" width="22" height="22" rx="4"/>
+                                    <path d="M10 15l3 3 7-7"/>
+                                </svg>
+                            </div>
+                            <h3>단계별 문제 풀이</h3>
+                            <ul class="feature-list">
+                                <li>출력부터 함수까지 <mark>단원별 영상</mark>으로 예습·복습 가능</li>
+                                <li>코드 작성, 실행, <mark>자동 채점</mark>이 한 화면에서 완결</li>
+                                <li>AI가 정답 여부뿐 아니라 <mark>코드 접근법까지 검수</mark></li>
+                                <li>작성 중인 코드 <strong>자동 저장</strong>으로 수업 중간에 끊겨도 이어서 풀기</li>
+                                <li>즐겨찾기, 메모, 그림메모로 학생이 스스로 복습 포인트 정리</li>
+                                <li>한번 푼 문제를 다시 풀면 <mark>복습으로 자동 기록</mark></li>
+                                <li>단원별 또는 문제별 선택 리셋으로 반복 학습 지원</li>
+                            </ul>
+                        </article>
+                        <div class="feature-screenshot">스크린샷 영역</div>
+                    </div>
+
+                    <!-- Row 2: 스크린샷 | 설명 -->
+                    <div class="feature-row reveal">
+                        <article class="feature-card">
+                            <div class="feature-num">02 — AI Support</div>
+                            <div class="feature-icon">
+                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 4a8 8 0 0 1 8 8c0 3-1.5 5.5-4 7v3h-8v-3c-2.5-1.5-4-4-4-7a8 8 0 0 1 8-8z"/>
+                                    <path d="M10 26h4"/>
+                                </svg>
+                            </div>
+                            <h3>AI 튜터 보조</h3>
+                            <ul class="feature-list">
+                                <li>막히는 순간 AI가 <mark>단계별 힌트 제공</mark> (답을 바로 알려주지 않음)</li>
+                                <li><strong>학생 수준에 맞춰</strong> 초보에겐 쉬운 말로, 고급자에겐 깊게 리뷰</li>
+                                <li>에러 메시지를 학생이 이해할 수 있는 말로 <mark>자동 번역</mark></li>
+                                <li>수업 중 질문 폭주 없이 AI가 개념을 <strong>1:1로 설명</strong></li>
+                                <li>정답과 학생 풀이 방식을 비교해서 더 나은 접근법 안내</li>
+                                <li>AI 튜터 <strong>"나나"</strong>와 프로그래밍 주제 안에서 자유롭게 채팅</li>
+                                <li>최근 풀이 패턴을 분석해서 <mark>다음 학습 경로 자동 추천</mark></li>
+                                <li>수업 시간에는 끄고, 자습 때는 켜는 학생별 <strong>AI 사용 ON/OFF</strong></li>
+                            </ul>
+                        </article>
+                        <div class="feature-screenshot">스크린샷 영역</div>
+                    </div>
+
+                    <!-- Row 3: 설명 | 스크린샷 -->
+                    <div class="feature-row reveal">
+                        <article class="feature-card">
+                            <div class="feature-num">03 — Community</div>
+                            <div class="feature-icon">
+                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="10" cy="12" r="4"/>
+                                    <circle cx="20" cy="12" r="4"/>
+                                    <path d="M4 24c0-3.31 2.69-6 6-6h10c3.31 0 6 2.69 6 6"/>
+                                </svg>
+                            </div>
+                            <h3>학생 참여형 커뮤니티</h3>
+                            <ul class="feature-list">
+                                <li>학생이 직접 문제를 출제해서 <mark>"만드는 수업"</mark>으로 전환</li>
+                                <li>AI가 출제된 문제를 <strong>자동 검수</strong>하고 난이도와 키워드까지 배정</li>
+                                <li>다른 학생이 내가 만든 문제를 풀어주는 구조로 <mark>출제자에게 최고의 복습</mark></li>
+                                <li>좋아요, 즐겨찾기, 풀이 수 집계로 인기 문제가 자연스럽게 부각</li>
+                                <li>출제한 문제를 언제든 자유롭게 <strong>공개/비공개 전환</strong> 가능</li>
+                                <li>난이도별 검색, 키워드 필터로 원하는 문제를 빠르게 탐색</li>
+                                <li>"이번 주 배운 내용으로 문제 1개씩 만들어오기" 같은 <mark>수업 활용</mark>에 적합</li>
+                                <li>학생 간 풀이 공유로 <strong>협력 학습</strong> 문화 형성</li>
+                            </ul>
+                        </article>
+                        <div class="feature-screenshot">스크린샷 영역</div>
+                    </div>
+
+                    <!-- Row 4: 스크린샷 | 설명 -->
+                    <div class="feature-row reveal">
+                        <article class="feature-card">
+                            <div class="feature-num">04 — Operations</div>
+                            <div class="feature-icon">
+                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="4" y="6" width="22" height="18" rx="3"/>
+                                    <path d="M4 11h22"/>
+                                    <path d="M10 16h4M10 20h6"/>
+                                </svg>
+                            </div>
+                            <h3>기관 운영 관리</h3>
+                            <ul class="feature-list">
+                                <li>반 생성, 학생 배치, 교사 배정을 <mark>한 화면에서 처리</mark></li>
+                                <li>누가 몇 문제 풀었는지, 언제 접속했는지 <strong>실시간 확인</strong></li>
+                                <li>풀이 기록, 코드 이력, 일별 차트, AI 내역까지 <mark>학생 상세 리포트</mark></li>
+                                <li>학생별 개별 또는 <strong>반 전체 일괄</strong> 커리큘럼 설정 가능</li>
+                                <li>티켓으로 학생별 이용권 연장하고 잔여일을 실시간으로 확인</li>
+                                <li>AI 학습 피드백을 <mark>링크 하나로 학부모에게 전달</mark> (로그인 불필요)</li>
+                                <li>누가 언제 무엇을 변경했는지 <strong>활동 로그</strong>에 자동 기록</li>
+                                <li>학생 비밀번호 분실 시 선생님이 <strong>즉시 리셋</strong> 가능</li>
+                            </ul>
+                        </article>
+                        <div class="feature-screenshot">스크린샷 영역</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ── For Educators ─────────────────────────────────────────── -->
+        <section id="educators" class="sec">
+            <div class="wrap">
+                <div class="sec-head reveal">
+                    <span class="label">Why Teams Choose It</span>
+                    <h2 class="sec-title">도입하면 바로 달라지는 것들</h2>
+                </div>
+                <div class="edu-benefits-grid">
+                    <div class="edu-benefit reveal">
+                        <div class="edu-benefit-num">01</div>
+                        <h4>수업 준비 시간이 <mark>절반으로 줄어요.</mark></h4>
+                        <p>반별 진행 현황이 실시간으로 보이니까, 누가 어디서 막혔는지 수업 전에 미리 파악됩니다.</p>
+                    </div>
+                    <div class="edu-benefit reveal reveal-d1">
+                        <div class="edu-benefit-num">02</div>
+                        <h4>반복 질문은 <mark>AI가 대신 답해요.</mark></h4>
+                        <p>"선생님 이거 어떻게 해요?"를 AI 힌트가 흡수합니다. 선생님은 개별 지도에 집중하세요.</p>
+                    </div>
+                    <div class="edu-benefit reveal reveal-d1">
+                        <div class="edu-benefit-num">03</div>
+                        <h4>학부모 상담이 <mark>데이터로 달라져요.</mark></h4>
+                        <p>AI 학습 피드백 링크를 보내면 학부모가 로그인 없이 바로 확인합니다. 상담 신뢰도가 달라집니다.</p>
+                    </div>
+                    <div class="edu-benefit reveal reveal-d2">
+                        <div class="edu-benefit-num">04</div>
+                        <h4>학생이 <mark>스스로 들어와서 풀어요.</mark></h4>
+                        <p>커뮤니티 출제, 복습 추적, 코스 추천이 학생의 자발적 학습 습관을 만들어줍니다.</p>
+                    </div>
+                    <div class="edu-benefit reveal reveal-d2">
+                        <div class="edu-benefit-num">05</div>
+                        <h4>모든 관리가 <mark>한 화면에서 끝나요.</mark></h4>
+                        <p>클래스 생성, 교사 배정, 학생 관리를 별도 도구 없이 하나의 대시보드에서 처리합니다.</p>
+                    </div>
+                    <div class="edu-benefit reveal reveal-d3">
+                        <div class="edu-benefit-num">06</div>
+                        <h4>도입 부담이 <mark>전혀 없어요.</mark></h4>
+                        <p>14일 무료체험으로 시작하고, Trial에서 Basic/Pro로 결제 전환까지 한 번에 이어집니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Pricing ───────────────────────────────────────────────── -->
+        <section id="pricing" class="sec sec-alt">
+            <div class="wrap">
+                <div class="sec-head reveal">
+                    <span class="label">Licensing</span>
+                    <h2 class="sec-title">4가지 라이선스</h2>
+                    <p class="sec-sub" style="margin-top:8px;">규모에 따라 우리 기관에 딱 맞는 플랜을 선택하세요. 모든 요금은 부가세 포함입니다.</p>
+                </div>
+                <div class="pricing-grid">
+                    <article class="pricing-card reveal" data-plan="trial">
+                        <span class="plan-badge badge-trial">Free Trial</span>
+                        <h3>무료체험</h3>
+                        <p class="pricing-card-desc">도입 전 무료로 체험</p>
+                        <div class="price-block">
+                            <div class="pricing-toggle-row">
+                                <div class="pricing-toggle">
+                                    <span class="pricing-toggle-btn active">14일 무료</span>
+                                </div>
+                            </div>
+                            <div class="price-main" data-price>0원</div>
+                        </div>
+                        <ul class="pricing-features">
+                            <li>최대 5명</li>
+                            <li>단계별 문제 풀이와 자동 채점</li>
+                            <li>AI 튜터 힌트 및 코드 리뷰</li>
+                            <li>실시간 학습 현황 대시보드</li>
+                            <li>학생별 진도 관리</li>
+                            <li>코드 자동 저장 및 복습</li>
+                            <li>커뮤니티 질문·답변</li>
+                            <li>학부모 리포트 공유</li>
+                        </ul>
+                        <a class="plan-btn plan-btn-outline" href="#contact" data-plan-select="무료체험 라이선스">무료체험 신청</a>
+                    </article>
+
+                    <article class="pricing-card reveal reveal-d1" data-plan="basic">
+                        <span class="plan-badge badge-basic">Lite</span>
+                        <h3>라이트</h3>
+                        <p class="pricing-card-desc">소규모 반 기본 도입형</p>
+                        <div class="price-block">
+                            <div class="pricing-toggle-row">
+                                <div class="pricing-toggle">
+                                    <button class="pricing-toggle-btn active" data-months="1">1개월</button>
+                                    <button class="pricing-toggle-btn" data-months="3">3개월</button>
+                                    <button class="pricing-toggle-btn" data-months="6">6개월</button>
+                                    <button class="pricing-toggle-btn" data-months="12">12개월</button>
+                                </div>
+                            </div>
+                            <div class="price-row">
+                                <div class="price-main" data-price>240,000원</div>
+                                <span class="price-discount" data-discount></span>
+                            </div>
+                        </div>
+                        <ul class="pricing-features">
+                            <li>최대 20명</li>
+                            <li>단계별 문제 풀이와 자동 채점</li>
+                            <li>AI 튜터 힌트 및 코드 리뷰</li>
+                            <li>실시간 학습 현황 대시보드</li>
+                            <li>학생별 진도 관리</li>
+                            <li>코드 자동 저장 및 복습</li>
+                            <li>커뮤니티 질문·답변</li>
+                            <li>학부모 리포트 공유</li>
+                        </ul>
+                        <a class="plan-btn plan-btn-outline" href="#contact" data-plan-select="라이트 라이선스">라이트 견적 신청</a>
+                    </article>
+
+                    <article class="pricing-card featured reveal reveal-d2" data-plan="pro">
+                        <div style="display:flex; align-items:center; flex-wrap:wrap; gap:4px;">
+                            <span class="plan-badge badge-pro">Standard</span>
+                            <span class="plan-popular">추천</span>
+                        </div>
+                        <h3>스탠다드</h3>
+                        <p class="pricing-card-desc">AI 활용과 기관 운영 최적화</p>
+                        <div class="price-block" style="border-color:var(--primary-lt);">
+                            <div class="pricing-toggle-row">
+                                <div class="pricing-toggle">
+                                    <button class="pricing-toggle-btn active" data-months="1">1개월</button>
+                                    <button class="pricing-toggle-btn" data-months="3">3개월</button>
+                                    <button class="pricing-toggle-btn" data-months="6">6개월</button>
+                                    <button class="pricing-toggle-btn" data-months="12">12개월</button>
+                                </div>
+                            </div>
+                            <div class="price-row">
+                                <div class="price-main featured-price" data-price>450,000원</div>
+                                <span class="price-discount" data-discount></span>
+                            </div>
+                        </div>
+                        <ul class="pricing-features">
+                            <li>최대 50명</li>
+                            <li>단계별 문제 풀이와 자동 채점</li>
+                            <li>AI 튜터 힌트 및 코드 리뷰</li>
+                            <li>실시간 학습 현황 대시보드</li>
+                            <li>학생별 진도 관리</li>
+                            <li>코드 자동 저장 및 복습</li>
+                            <li>커뮤니티 질문·답변</li>
+                            <li>학부모 리포트 공유</li>
+                        </ul>
+                        <a class="plan-btn plan-btn-primary" href="#contact" data-plan-select="스탠다드 라이선스">스탠다드 견적 신청</a>
+                    </article>
+
+                    <article class="pricing-card reveal reveal-d3" data-plan="enterprise">
+                        <span class="plan-badge badge-enterprise">Enterprise</span>
+                        <h3>엔터프라이즈</h3>
+                        <p class="pricing-card-desc">대형 기관 맞춤 계약</p>
+                        <div class="price-block">
+                            <div class="pricing-toggle-row">
+                                <div class="pricing-toggle">
+                                    <span class="pricing-toggle-btn active">별도 협의</span>
+                                </div>
+                            </div>
+                            <div class="price-main" data-price>맞춤 견적</div>
+                        </div>
+                        <ul class="pricing-features">
+                            <li>51명 이상 기관 맞춤 견적</li>
+                            <li>단계별 문제 풀이와 자동 채점</li>
+                            <li>AI 튜터 힌트 및 코드 리뷰</li>
+                            <li>실시간 학습 현황 대시보드</li>
+                            <li>학생별 진도 관리</li>
+                            <li>코드 자동 저장 및 복습</li>
+                            <li>커뮤니티 질문·답변</li>
+                            <li>학부모 리포트 공유</li>
+                        </ul>
+                        <a class="plan-btn plan-btn-amber" href="#contact" data-plan-select="엔터프라이즈 라이선스">맞춤 견적 신청</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Contact ───────────────────────────────────────────────── -->
+        <section id="contact" class="sec">
+            <div class="wrap">
+                <div class="sec-head reveal">
+                    <span class="label">Contact</span>
+                    <h2 class="sec-title">도입 문의</h2>
+                </div>
+                <div class="contact-grid">
+                    <aside class="contact-aside reveal">
+                        <h2>도입 문의를 남겨 주세요.</h2>
+                        <p>기관 규모와 운영 방식에 맞춰 안내해 드립니다. 아래 양식을 작성하시면 빠르게 연락드립니다.</p>
+                        <ul class="contact-checklist">
+                            <li>기관명, 담당자, 연락처, 학생 수, 희망 플랜까지 한 번에!</li>
+                            <li>가격 카드에서 선택한 플랜과 기간이 자동으로 반영됩니다.</li>
+                            <li>무료체험 후 라이선스 업그레이드 가능합니다.</li>
+                            <li>파이썬을 가르치는 곳이라면 어디든 문의 가능합니다.</li>
+                        </ul>
+                    </aside>
+                    <div class="contact-form-card reveal reveal-d1">
+                        <form id="contactForm">
+                            <div class="form-grid">
+                                <div class="field">
+                                    <label for="orgName">기관명<span class="req">*</span></label>
+                                    <input id="orgName" name="org_name" type="text" placeholder="기관명 입력" required>
+                                </div>
+                                <div class="field">
+                                    <label for="managerName">담당자 이름<span class="req">*</span></label>
+                                    <input id="managerName" name="manager_name" type="text" placeholder="담당자 이름 입력" required>
+                                </div>
+                                <div class="field">
+                                    <label for="phone">연락처<span class="req">*</span></label>
+                                    <input id="phone" name="phone" type="tel" placeholder="010-1234-5678" required>
+                                </div>
+                                <div class="field">
+                                    <label for="email">이메일</label>
+                                    <input id="email" name="email" type="email" placeholder="hello@example.com">
+                                </div>
+                                <div class="field">
+                                    <label for="orgType">기관 유형<span class="req">*</span></label>
+                                    <select id="orgType" name="org_type" required>
+                                        <option value="">기관 유형 선택</option>
+                                        <option>학교</option>
+                                        <option>학원</option>
+                                        <option>기타</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label for="studentCount">예상 학생 수</label>
+                                    <select id="studentCount" name="student_count">
+                                        <option value="">예상 학생 수 선택</option>
+                                        <option>1~10명</option>
+                                        <option>11~20명</option>
+                                        <option>21~50명</option>
+                                        <option>51명 이상</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label for="desiredPlan">희망 라이선스</label>
+                                    <select id="desiredPlan" name="desired_plan">
+                                        <option value="">라이선스 선택</option>
+                                        <option>무료체험</option>
+                                        <option>라이트</option>
+                                        <option>스탠다드</option>
+                                        <option>엔터프라이즈</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label for="desiredPeriod">희망 기간</label>
+                                    <select id="desiredPeriod" name="desired_period">
+                                        <option value="">기간 선택</option>
+                                        <option>1개월</option>
+                                        <option>3개월</option>
+                                        <option>6개월</option>
+                                        <option>12개월</option>
+                                    </select>
+                                </div>
+                                <div class="field full">
+                                    <label for="message">문의 내용</label>
+                                    <textarea id="message" name="message" placeholder="문의하고 싶은 내용을 자유롭게 작성해 주세요."></textarea>
+                                </div>
+                            </div>
+                            <button class="contact-submit" type="submit">도입 문의 남기기 →</button>
+                            <div class="form-message" id="formMessage"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ── Footer ───────────────────────────────────────────────────── -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand-row">
+                        <span class="brand-mark">LET'S CODING</span>
+                    </div>
+                    <p class="footer-desc">학생 학습, AI 보조, 기관 운영이 한 제품 안에서 이어지는 파이썬 학습 플랫폼.</p>
+                </div>
+                <div class="footer-nav-group">
+                    <h4>제품</h4>
+                    <a href="#workflow">학습 흐름</a>
+                    <a href="#features">핵심 기능</a>
+                    <a href="#educators">기대 효과</a>
+                </div>
+                <div class="footer-nav-group">
+                    <h4>도입</h4>
+                    <a href="#pricing">라이선스</a>
+                    <a href="#contact">도입 문의</a>
+                    <a href="https://python.letscoding.co.kr" target="_blank" rel="noopener noreferrer">학습 플랫폼 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-legal">
+                    <a href="/terms">이용약관</a>
+                    <a href="/privacy">개인정보처리방침</a>
+                </div>
+                <span>© <span id="year"></span> 렛츠코딩. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    (function () {
+        'use strict';
+
+        /* ── Scrolled header ──────────────────────────────────── */
+        var header = document.getElementById('siteHeader');
+        window.addEventListener('scroll', function () {
+            header.classList.toggle('scrolled', window.scrollY > 10);
+        }, { passive: true });
+
+        /* ── Mobile menu ──────────────────────────────────────── */
+        var hamburger  = document.getElementById('navHamburger');
+        var mobileMenu = document.getElementById('mobileMenu');
+        hamburger.addEventListener('click', function () {
+            var open = mobileMenu.classList.toggle('open');
+            hamburger.classList.toggle('open', open);
+            document.body.style.overflow = open ? 'hidden' : '';
+            hamburger.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
+        });
+        document.querySelectorAll('[data-ml]').forEach(function (link) {
+            link.addEventListener('click', function () {
+                mobileMenu.classList.remove('open');
+                hamburger.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        });
+
+        /* ── Year ─────────────────────────────────────────────── */
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        /* ── Pricing toggle ───────────────────────────────────── */
+        var pricingTable = {
+            basic: { 1: '240,000원', 3: '648,000원', 6: '1,152,000원', 12: '2,016,000원' },
+            pro:   { 1: '450,000원', 3: '1,215,000원', 6: '2,160,000원', 12: '3,780,000원' }
+        };
+        var discountMap = { 1: '', 3: '10% 할인', 6: '20% 할인', 12: '30% 할인' };
+        var cardMonths = { basic: 1, pro: 1 };
+        var desiredPlan   = document.getElementById('desiredPlan');
+        var desiredPeriod = document.getElementById('desiredPeriod');
+
+        function updateCardPrice(card, months) {
+            var plan    = card.dataset.plan;
+            var priceEl = card.querySelector('[data-price]');
+            var discEl  = card.querySelector('[data-discount]');
+            if (!priceEl || !pricingTable[plan]) return;
+            priceEl.textContent = pricingTable[plan][months];
+            if (discEl) {
+                var label = discountMap[months];
+                discEl.textContent = label;
+                discEl.classList.toggle('show', !!label);
+            }
+        }
+
+        document.querySelectorAll('.pricing-card').forEach(function (card) {
+            var plan = card.dataset.plan;
+            card.querySelectorAll('.pricing-toggle-btn').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var months = Number(btn.dataset.months);
+                    cardMonths[plan] = months;
+                    card.querySelectorAll('.pricing-toggle-btn').forEach(function (b) {
+                        b.classList.toggle('active', b === btn);
+                    });
+                    updateCardPrice(card, months);
+                    desiredPeriod.value = months + '개월';
+                });
+            });
+        });
+
+        document.querySelectorAll('[data-plan-select]').forEach(function (link) {
+            link.addEventListener('click', function () {
+                var card = link.closest('.pricing-card');
+                var plan = card ? card.dataset.plan : '';
+                desiredPlan.value   = link.dataset.planSelect;
+                desiredPeriod.value = (cardMonths[plan] || 1) + '개월';
+            });
+        });
+
+        desiredPeriod.value = '1개월';
+
+        /* ── Contact form ─────────────────────────────────────── */
+        var contactForm = document.getElementById('contactForm');
+        var formMessage = document.getElementById('formMessage');
+
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            var orgName     = document.getElementById('orgName').value.trim();
+            var managerName = document.getElementById('managerName').value.trim();
+            var phone       = document.getElementById('phone').value.trim();
+            var orgType     = document.getElementById('orgType').value.trim();
+            if (!orgName || !managerName || !phone || !orgType) {
+                formMessage.className = 'form-message error';
+                formMessage.textContent = '필수 항목(기관명, 담당자 이름, 전화번호, 기관 유형)을 입력해 주세요.';
+                return;
+            }
+            var submitBtn = contactForm.querySelector('button[type="submit"]');
+            var originalText = submitBtn.textContent;
+            submitBtn.textContent = '전송 중...';
+            submitBtn.disabled = true;
+            formMessage.className = '';
+            formMessage.textContent = '';
+            var payload = {
+                org_name:       orgName,
+                manager_name:   managerName,
+                phone:          phone,
+                email:          (document.getElementById('email') ? document.getElementById('email').value.trim() : ''),
+                org_type:       orgType,
+                student_count:  (document.getElementById('studentCount') ? document.getElementById('studentCount').value.trim() : ''),
+                desired_plan:   desiredPlan.value,
+                desired_period: desiredPeriod.value,
+                message:        (document.getElementById('message') ? document.getElementById('message').value.trim() : ''),
+            };
+            fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            })
+            .then(function (res) { return res.json(); })
+            .then(function (data) {
+                if (data.success) {
+                    formMessage.className = 'form-message';
+                    formMessage.textContent = '문의가 접수되었습니다. 확인 후 빠르게 연락드리겠습니다.';
+                    contactForm.reset();
+                    desiredPlan.value   = '';
+                    desiredPeriod.value = '1개월';
+                } else {
+                    formMessage.className = 'form-message error';
+                    formMessage.textContent = data.error || '전송에 실패했습니다. 다시 시도해 주세요.';
+                }
+            })
+            .catch(function () {
+                formMessage.className = 'form-message error';
+                formMessage.textContent = '네트워크 오류가 발생했습니다. 다시 시도해 주세요.';
+            })
+            .finally(function () {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
+        });
+
+        /* ── Scroll reveal ────────────────────────────────────── */
+        var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(function (el) {
+            observer.observe(el);
+        });
+
+        /* ── Active nav spy ───────────────────────────────────── */
+        var navLinks = Array.from(document.querySelectorAll('.nav-link[href^="#"]'));
+        var sections = navLinks.map(function (link) {
+            return document.querySelector(link.getAttribute('href'));
+        }).filter(Boolean);
+
+        var spyObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                navLinks.forEach(function (link) {
+                    link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+                });
+            });
+        }, { rootMargin: '-30% 0px -55% 0px', threshold: 0.01 });
+
+        sections.forEach(function (s) { spyObserver.observe(s); });
+
+        /* ── Banner & Modal ─────────────────────────── */
+        document.getElementById('topBannerClose').addEventListener('click', function () {
+            document.getElementById('topBanner').classList.add('hidden');
+        });
+        function closeModal() {
+            document.getElementById('urlModal').classList.add('hidden');
+        }
+        document.getElementById('modalClose').addEventListener('click', closeModal);
+        document.getElementById('modalDismiss').addEventListener('click', closeModal);
+        document.getElementById('urlModal').addEventListener('click', function (e) {
+            if (e.target === this) closeModal();
+        });
+
+    }());
+    </script>
 </body>
 </html>
