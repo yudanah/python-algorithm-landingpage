@@ -234,7 +234,7 @@
         .hero-p { margin-left: auto; margin-right: auto; }
         .hero-actions { justify-content: center; }
         .hero-h1 {
-            font-size: clamp(38px, 5vw, 62px);
+            font-size: clamp(32px, 4.5vw, 52px);
             font-weight: 900;
             letter-spacing: -0.04em;
             line-height: 1.3;
@@ -458,12 +458,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--bg-alt);
-            padding: 48px 32px;
+            background: transparent;
+            padding: 0;
             color: var(--text-3);
             font-size: 13px;
             border-radius: var(--r-xl);
-            border: 1px dashed var(--border);
+            border: none;
+            min-height: 420px;
+            max-height: 420px;
+            overflow: hidden;
+        }
+        .feature-screenshot > div {
+            width: 100%;
+            max-height: 420px;
+            overflow: hidden;
         }
         .feature-num {
             font-size: 11px;
@@ -592,6 +600,23 @@
             justify-content: center;
             color: var(--primary);
             margin-bottom: 16px;
+            position: relative;
+        }
+        .step-icon::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #FFE066;
+            border-radius: 50%;
+            top: 2px;
+            right: 6px;
+            z-index: 0;
+            opacity: 0.7;
+        }
+        .step-icon svg {
+            position: relative;
+            z-index: 1;
         }
         .step-num {
             font-size: 13px;
@@ -1243,6 +1268,590 @@
         .modal-btn-ghost { background: transparent; color: var(--text-2); border: 1px solid var(--border); }
         .modal-btn-ghost:hover { border-color: var(--border-md); color: var(--text); }
 
+
+        /* ── Problem Solving Mockup ──────────────────────────────── */
+        .problem-mockup-wrap {
+            background: #f8f8fc;
+            border-radius: 16px;
+            overflow: hidden;
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.10);
+            width: 100%;
+        }
+        .problem-mockup-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: #fff;
+            border-bottom: 1px solid #e8e9f2;
+        }
+        .problem-mockup-header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .problem-mockup-logo {
+            font-size: 11px;
+            font-weight: 800;
+            color: #1a1d2e;
+            letter-spacing: 0.05em;
+        }
+        .problem-mockup-nav {
+            display: flex;
+            gap: 14px;
+            font-size: 11px;
+            color: #9094a8;
+        }
+        .problem-mockup-nav span.active {
+            color: #5b5fcf;
+            font-weight: 700;
+            border-bottom: 2px solid #5b5fcf;
+        }
+        .problem-mockup-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 260px;
+        }
+        .problem-mockup-left {
+            padding: 16px;
+            border-right: 1px solid #e8e9f2;
+            background: #fff;
+        }
+        .problem-mockup-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+        .problem-badge-green { background: #e6f9ef; color: #27ae60; }
+        .problem-badge-blue { background: #e6f0ff; color: #2d6de0; }
+        .problem-mockup-problem-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1a1d2e;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        .problem-mockup-desc {
+            font-size: 11px;
+            color: #555870;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+        .problem-mockup-desc code {
+            background: #f0f1f8;
+            color: #5b5fcf;
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-family: 'Fira Code', 'Consolas', monospace;
+        }
+        .problem-mockup-example {
+            background: #f4f6fb;
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 11px;
+            color: #666a82;
+            border: 1px solid #e8e9f2;
+        }
+        .problem-mockup-example-title {
+            font-size: 10px;
+            font-weight: 700;
+            color: #9094a8;
+            margin-bottom: 6px;
+        }
+        .problem-mockup-right {
+            display: flex;
+            flex-direction: column;
+        }
+        .problem-mockup-editor-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 14px;
+            background: #1e2040;
+            border-bottom: 1px solid #2a2d50;
+        }
+        .problem-editor-tab {
+            font-size: 11px;
+            font-weight: 700;
+            color: #e0e2f0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .problem-editor-tab span {
+            color: #4ade80;
+        }
+        .problem-mockup-code {
+            padding: 12px 14px;
+            font-size: 11px;
+            line-height: 1.8;
+            color: #c0c4e0;
+            flex: 1;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            background: #131525;
+        }
+        .problem-mockup-code .line-num {
+            color: #3a3e60;
+            margin-right: 12px;
+            user-select: none;
+        }
+        .problem-code-keyword { color: #c084fc; }
+        .problem-code-func { color: #60a5fa; }
+        .problem-code-string { color: #4ade80; }
+        .problem-code-comment { color: #5a5e80; font-style: italic; }
+        .problem-mockup-result {
+            border-top: 1px solid #2a2d50;
+            padding: 10px 14px;
+            background: #0a0b18;
+        }
+        .problem-result-label {
+            font-size: 10px;
+            font-weight: 700;
+            color: #4ade80;
+            margin-bottom: 4px;
+        }
+        .problem-result-text {
+            font-size: 11px;
+            color: #9094b0;
+            font-family: 'Fira Code', monospace;
+        }
+        .problem-mockup-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 14px;
+            background: #fff;
+            border-top: 1px solid #e8e9f2;
+        }
+        .problem-btn-ai {
+            font-size: 11px;
+            font-weight: 600;
+            background: #f0f1f8;
+            color: #5b5fcf;
+            padding: 5px 14px;
+            border-radius: 6px;
+            border: 1px solid #e8e9f2;
+        }
+        .problem-btn-run {
+            font-size: 11px;
+            font-weight: 700;
+            background: #2d6de0;
+            color: #fff;
+            padding: 5px 16px;
+            border-radius: 6px;
+        }
+        .problem-mockup-tags {
+            display: flex;
+            gap: 6px;
+        }
+        .problem-tag {
+            font-size: 10px;
+            background: #f0f1f8;
+            color: #6668a8;
+            border-radius: 6px;
+            padding: 2px 8px;
+            font-weight: 600;
+        }
+
+        /* ── Chat Mockup ─────────────────────────────────────────── */
+        .chat-mockup-wrap {
+            background: #f8f8fc;
+            border-radius: 16px;
+            overflow: hidden;
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.10);
+            width: 100%;
+            max-width: 420px;
+            margin: auto;
+        }
+        .chat-mockup-header {
+            background: #fff;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #e8e9f2;
+        }
+        .chat-mockup-title {
+            font-size: 15px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #ff6eb4, #ff9a5c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .chat-mockup-icons {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .chat-mockup-icon {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #f0f1f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            color: #9094a8;
+        }
+        .chat-mockup-body {
+            padding: 16px 16px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            min-height: 160px;
+        }
+        .chat-bubble {
+            border-radius: 12px;
+            padding: 10px 14px;
+            max-width: 92%;
+            font-size: 13px;
+            line-height: 1.65;
+        }
+        .chat-bubble-label {
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            letter-spacing: 0.02em;
+        }
+        .chat-bubble-student {
+            background: #ede9fe;
+            align-self: flex-end;
+            color: #3730a3;
+        }
+        .chat-bubble-student .chat-bubble-label {
+            color: #7c3aed;
+        }
+        .chat-bubble-ai {
+            background: #fff;
+            align-self: flex-start;
+            color: #1a1d2e;
+            border: 1px solid #e8e9f2;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .chat-bubble-ai .chat-bubble-label {
+            color: #2d6de0;
+        }
+        .chat-code {
+            background: #f0f1f8;
+            border-radius: 4px;
+            padding: 1px 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: #5b5fcf;
+        }
+        .chat-bubble-ai strong {
+            color: #1a1d2e;
+        }
+        .chat-quick-actions {
+            display: flex;
+            gap: 6px;
+            padding: 10px 16px 0;
+            flex-wrap: wrap;
+        }
+        .chat-quick-btn {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 5px 11px;
+            border-radius: 20px;
+            background: #f0f1f8;
+            color: #5b5fcf;
+            border: 1px solid #e0e1f0;
+            white-space: nowrap;
+        }
+        .chat-input-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px 14px;
+        }
+        .chat-input-field {
+            flex: 1;
+            background: #fff;
+            border: 1px solid #e8e9f2;
+            border-radius: 20px;
+            padding: 7px 14px;
+            font-size: 12px;
+            color: #9094a8;
+            font-family: inherit;
+        }
+        .chat-send-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #5b5fcf;
+            color: #fff;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        /* ── Community Mockup ────────────────────────────────────── */
+        .community-mockup-wrap {
+            background: #f4f6fb;
+            border-radius: 16px;
+            overflow: hidden;
+            font-family: 'Pretendard', sans-serif;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+            width: 100%;
+            max-width: 480px;
+            margin: auto;
+        }
+        .community-mockup-header {
+            background: #fff;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #e8eaf0;
+        }
+        .community-mockup-logo {
+            font-size: 13px;
+            font-weight: 800;
+            background: linear-gradient(90deg, #6c63ff, #48b0f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+        .community-mockup-tabs {
+            display: flex;
+            gap: 16px;
+        }
+        .community-mockup-tab {
+            font-size: 12px;
+            color: #9094a8;
+            font-weight: 500;
+            padding-bottom: 2px;
+        }
+        .community-mockup-tab.active {
+            color: #5b5fcf;
+            font-weight: 700;
+            border-bottom: 2px solid #5b5fcf;
+        }
+        .community-mockup-filters {
+            background: #fff;
+            padding: 8px 18px;
+            display: flex;
+            gap: 8px;
+            border-bottom: 1px solid #e8eaf0;
+        }
+        .community-filter-pill {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 20px;
+            background: #f0f1f8;
+            color: #666a82;
+            white-space: nowrap;
+        }
+        .community-filter-pill.active {
+            background: #5b5fcf;
+            color: #fff;
+        }
+        .community-mockup-grid {
+            padding: 14px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .community-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 12px;
+            border: 1px solid #eaecf4;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .community-card-top {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .community-level-badge {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 8px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .lv-green { background: #e6f9ef; color: #27ae60; }
+        .lv-blue  { background: #e6f0ff; color: #2d6de0; }
+        .lv-purple { background: #f0e6ff; color: #7c3aed; }
+        .community-card-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: #1a1d2e;
+            line-height: 1.4;
+        }
+        .community-card-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 10px;
+            color: #9094a8;
+        }
+        .community-card-author {
+            font-weight: 600;
+            color: #555870;
+        }
+        .community-card-stats {
+            display: flex;
+            gap: 6px;
+        }
+        .community-card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+        .community-tag {
+            font-size: 10px;
+            background: #f0f1f8;
+            color: #6668a8;
+            border-radius: 6px;
+            padding: 2px 6px;
+            font-weight: 600;
+        }
+        .community-card-actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .community-action-icon {
+            font-size: 11px;
+            color: #bbbdce;
+        }
+
+        /* ── Admin Mockup ───────────────────────────────────────── */
+        .admin-mockup-wrap {
+            background: #f8f8fc;
+            border-radius: 16px;
+            overflow: hidden;
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.10);
+            width: 100%;
+            position: relative;
+        }
+        .admin-mockup-main {
+            padding: 20px 20px 16px;
+            position: relative;
+        }
+        .admin-mockup-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: #1a1d2e;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+        .admin-class-card {
+            background: #fff;
+            border: 1px solid #e8e9f2;
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .admin-class-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        .admin-class-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1a1d2e;
+        }
+        .admin-class-count {
+            font-size: 11px;
+            color: #9094a8;
+            margin-left: 8px;
+        }
+        .admin-class-btns {
+            display: flex;
+            gap: 6px;
+        }
+        .admin-class-btn {
+            font-size: 10px;
+            padding: 3px 10px;
+            border-radius: 4px;
+            background: #f0f1f8;
+            color: #666a82;
+            font-weight: 600;
+        }
+        .admin-class-btn.primary {
+            background: #2d6de0;
+            color: #fff;
+        }
+        .admin-student-row {
+            display: grid;
+            grid-template-columns: auto 1fr auto auto;
+            align-items: center;
+            gap: 10px;
+            padding: 7px 0;
+            border-top: 1px solid #f0f1f8;
+            font-size: 11px;
+            color: #9094a8;
+        }
+        .admin-student-name {
+            font-weight: 700;
+            color: #1a1d2e;
+            font-size: 12px;
+        }
+        .admin-student-progress {
+            font-weight: 600;
+            color: #9094a8;
+        }
+        .admin-student-links {
+            display: flex;
+            gap: 6px;
+        }
+        .admin-student-link {
+            font-size: 10px;
+            color: #2d6de0;
+            font-weight: 600;
+        }
+        .admin-student-link.highlight {
+            color: #f0a050;
+        }
+        .admin-point-badges-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px 16px;
+            flex-wrap: wrap;
+        }
+        .admin-point-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: #fff;
+            color: #1a1d2e;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.10);
+            border: 1px solid #e8e9f2;
+            white-space: nowrap;
+        }
+        .badge-check {
+            font-size: 11px;
+            font-weight: 900;
+        }
+
     </style>
 </head>
 <body>
@@ -1266,6 +1875,12 @@
             <div class="modal-actions">
                 <a class="modal-btn modal-btn-primary" href="https://python.letscoding.co.kr" target="_blank" rel="noopener noreferrer">바로가기</a>
                 <button class="modal-btn modal-btn-ghost" id="modalDismiss">닫기</button>
+            </div>
+            <div style="margin-top:20px; padding-top:16px; border-top:1px solid #e8e9f2; text-align:center;">
+                <label style="font-size:13px; color:#8a8eb0; cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
+                    <input type="checkbox" id="modalDontShow" style="accent-color:var(--primary); width:15px; height:15px; cursor:pointer;">
+                    오늘 하루 그만 보기
+                </label>
             </div>
         </div>
     </div>
@@ -1367,7 +1982,7 @@
                 <div class="steps-row reveal">
                     <div class="step-card">
                         <div class="step-icon">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
                         </div>
                         <div class="step-num">01</div>
                         <h4>문제 선택</h4>
@@ -1375,7 +1990,7 @@
                     </div>
                     <div class="step-card">
                         <div class="step-icon">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
                         </div>
                         <div class="step-num">02</div>
                         <h4>코드 작성</h4>
@@ -1383,7 +1998,7 @@
                     </div>
                     <div class="step-card">
                         <div class="step-icon">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                         </div>
                         <div class="step-num">03</div>
                         <h4>실행 · 채점</h4>
@@ -1391,7 +2006,7 @@
                     </div>
                     <div class="step-card">
                         <div class="step-icon">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a8 8 0 0 1 8 8c0 3-1.5 5.5-4 7v3H8v-3c-2.5-1.5-4-4-4-7a8 8 0 0 1 8-8z"/><path d="M10 22h4"/></svg>
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a8 8 0 0 1 8 8c0 3-1.5 5.5-4 7v3H8v-3c-2.5-1.5-4-4-4-7a8 8 0 0 1 8-8z"/><path d="M10 22h4"/></svg>
                         </div>
                         <div class="step-num">04</div>
                         <h4>AI 도움</h4>
@@ -1399,7 +2014,7 @@
                     </div>
                     <div class="step-card">
                         <div class="step-icon">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                         </div>
                         <div class="step-num">05</div>
                         <h4>관리 · 공유</h4>
@@ -1524,14 +2139,72 @@
                             <ul class="feature-list">
                                 <li>출력부터 함수까지 <mark>단원별 영상</mark>으로 예습·복습 가능</li>
                                 <li>코드 작성, 실행, <mark>자동 채점</mark>이 한 화면에서 완결</li>
-                                <li>AI가 정답 여부뿐 아니라 <mark>코드 접근법까지 검수</mark></li>
+                                <li>AI가 정답 여부뿐 아니라 <mark>코드 접근법까지 검수</mark> (꼼수 방지)</li>
                                 <li>작성 중인 코드 <strong>자동 저장</strong>으로 수업 중간에 끊겨도 이어서 풀기</li>
                                 <li>즐겨찾기, 메모, 그림메모로 학생이 스스로 복습 포인트 정리</li>
                                 <li>한번 푼 문제를 다시 풀면 <mark>복습으로 자동 기록</mark></li>
                                 <li>단원별 또는 문제별 선택 리셋으로 반복 학습 지원</li>
                             </ul>
                         </article>
-                        <div class="feature-screenshot">스크린샷 영역</div>
+                        <div class="feature-screenshot">
+                            <div class="problem-mockup-wrap">
+                                <!-- Header -->
+                                <div class="problem-mockup-header">
+                                    <div class="problem-mockup-header-left">
+                                        <span class="problem-mockup-logo">LET'S CODING</span>
+                                        <div class="problem-mockup-nav">
+                                            <span class="active">파이썬 시작하기</span>
+                                            <span>알고리즘</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Body: left problem + right editor -->
+                                <div class="problem-mockup-body">
+                                    <div class="problem-mockup-left">
+                                        <span class="problem-mockup-badge problem-badge-green">Lv.2</span>
+                                        <div class="problem-mockup-problem-title">두 수의 합 구하기</div>
+                                        <div class="problem-mockup-desc">
+                                            사용자로부터 두 개의 정수를 입력받아<br>
+                                            두 수의 <strong style="color:#1a1d2e;">합</strong>을 출력하세요.<br><br>
+                                            <code>input()</code> 으로 입력받고<br>
+                                            <code>int()</code> 로 정수 변환 후 더합니다.
+                                        </div>
+                                        <div class="problem-mockup-example">
+                                            <div class="problem-mockup-example-title">입출력 예시</div>
+                                            입력: 3, 5 → 출력: 8<br>
+                                            입력: 10, 20 → 출력: 30
+                                        </div>
+                                        <div style="margin-top:10px;">
+                                            <div class="problem-mockup-tags">
+                                                <span class="problem-tag">#input</span>
+                                                <span class="problem-tag">#변수</span>
+                                                <span class="problem-tag">#기본연산</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="problem-mockup-right">
+                                        <div class="problem-mockup-editor-header">
+                                            <div class="problem-editor-tab"><span>●</span> solution.py</div>
+                                        </div>
+                                        <div class="problem-mockup-code">
+                                            <div><span class="line-num">1</span><span class="problem-code-comment"># 두 수를 입력받아 합을 출력하세요</span></div>
+                                            <div><span class="line-num">2</span>a = <span class="problem-code-func">int</span>(<span class="problem-code-func">input</span>())</div>
+                                            <div><span class="line-num">3</span>b = <span class="problem-code-func">int</span>(<span class="problem-code-func">input</span>())</div>
+                                            <div><span class="line-num">4</span></div>
+                                            <div><span class="line-num">5</span><span class="problem-code-func">print</span>(a + b)</div>
+                                        </div>
+                                        <div class="problem-mockup-result">
+                                            <div class="problem-result-label">✔ 실행 결과</div>
+                                            <div class="problem-result-text">8</div>
+                                        </div>
+                                        <div class="problem-mockup-bottom">
+                                            <span class="problem-btn-ai">🤖 AI 나나</span>
+                                            <span class="problem-btn-run">▶ 실행</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Row 2: 스크린샷 | 설명 -->
@@ -1556,7 +2229,38 @@
                                 <li>수업 시간에는 끄고, 자습 때는 켜는 학생별 <strong>AI 사용 ON/OFF</strong></li>
                             </ul>
                         </article>
-                        <div class="feature-screenshot">스크린샷 영역</div>
+                        <div class="feature-screenshot">
+                            <div class="chat-mockup-wrap">
+                                <div class="chat-mockup-header">
+                                    <span class="chat-mockup-title">AI 나나</span>
+                                    <div class="chat-mockup-icons">
+                                        <div class="chat-mockup-icon">⏻</div>
+                                        <div class="chat-mockup-icon">↺</div>
+                                        <div class="chat-mockup-icon">✕</div>
+                                    </div>
+                                </div>
+                                <div class="chat-mockup-body">
+                                    <div class="chat-bubble chat-bubble-student">
+                                        <div class="chat-bubble-label">🧑 홍길동</div>
+                                        int 함수는 어떤 역할이야?
+                                    </div>
+                                    <div class="chat-bubble chat-bubble-ai">
+                                        <div class="chat-bubble-label">🤖 나나</div>
+                                        <code class="chat-code">int()</code> 함수는 문자열을 정수로 변환하는 역할을 해요! 💡<br><br>
+                                        <code class="chat-code">input()</code>은 사용자가 입력한 값을 <strong>문자열</strong> 형태로 받아오는데, 만약 그 값으로 계산을 하려면 정수로 바꿔야 하죠. 그때 <code class="chat-code">int()</code>가 필요합니다! ✨
+                                    </div>
+                                </div>
+                                <div class="chat-quick-actions">
+                                    <span class="chat-quick-btn">💡 힌트</span>
+                                    <span class="chat-quick-btn">📝 코드 리뷰</span>
+                                    <span class="chat-quick-btn">❓ 왜 틀린 거야?</span>
+                                </div>
+                                <div class="chat-input-bar">
+                                    <div class="chat-input-field">나나에게 질문하기...</div>
+                                    <div class="chat-send-btn">➤</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Row 3: 설명 | 스크린샷 -->
@@ -1582,7 +2286,101 @@
                                 <li>학생 간 풀이 공유로 <strong>협력 학습</strong> 문화 형성</li>
                             </ul>
                         </article>
-                        <div class="feature-screenshot">스크린샷 영역</div>
+                        <div class="feature-screenshot">
+                            <div class="community-mockup-wrap">
+                                <div class="community-mockup-header">
+                                    <span class="community-mockup-logo">LET'S CODING</span>
+                                    <div class="community-mockup-tabs">
+                                        <span class="community-mockup-tab active">모두의 문제</span>
+                                        <span class="community-mockup-tab">내 문제</span>
+                                        <span class="community-mockup-tab">즐겨찾기</span>
+                                    </div>
+                                    <span class="community-filter-pill active" style="margin-left:auto; white-space:nowrap;">+ 문제 만들기</span>
+                                </div>
+                                <div class="community-mockup-filters">
+                                    <span class="community-filter-pill active">전체</span>
+                                    <span class="community-filter-pill">Lv.1</span>
+                                    <span class="community-filter-pill">Lv.2</span>
+                                    <span class="community-filter-pill">Lv.3</span>
+                                    <span class="community-filter-pill">Lv.4</span>
+                                    <span class="community-filter-pill">Lv.5</span>
+                                </div>
+                                <div class="community-mockup-grid">
+                                    <div class="community-card">
+                                        <div class="community-card-top">
+                                            <span class="community-level-badge lv-green">Lv.1</span>
+                                            <span class="community-card-title">두 수를 입력받아 합 출력하기</span>
+                                        </div>
+                                        <div class="community-card-meta">
+                                            <span class="community-card-author">나*연</span>
+                                            <div class="community-card-stats">
+                                                <span>👁 34</span>
+                                                <span>💬 5</span>
+                                                <span>❤ 12</span>
+                                            </div>
+                                        </div>
+                                        <div class="community-card-tags">
+                                            <span class="community-tag">#입력</span>
+                                            <span class="community-tag">#연산</span>
+                                        </div>
+                                    </div>
+                                    <div class="community-card">
+                                        <div class="community-card-top">
+                                            <span class="community-level-badge lv-green">Lv.2</span>
+                                            <span class="community-card-title">반복문으로 구구단 출력하기</span>
+                                        </div>
+                                        <div class="community-card-meta">
+                                            <span class="community-card-author">김*아</span>
+                                            <div class="community-card-stats">
+                                                <span>👁 58</span>
+                                                <span>💬 9</span>
+                                                <span>❤ 21</span>
+                                            </div>
+                                        </div>
+                                        <div class="community-card-tags">
+                                            <span class="community-tag">#반복문</span>
+                                            <span class="community-tag">#출력</span>
+                                        </div>
+                                    </div>
+                                    <div class="community-card">
+                                        <div class="community-card-top">
+                                            <span class="community-level-badge lv-blue">Lv.3</span>
+                                            <span class="community-card-title">문자열에서 모음만 골라내기</span>
+                                        </div>
+                                        <div class="community-card-meta">
+                                            <span class="community-card-author">이*우</span>
+                                            <div class="community-card-stats">
+                                                <span>👁 47</span>
+                                                <span>💬 7</span>
+                                                <span>❤ 16</span>
+                                            </div>
+                                        </div>
+                                        <div class="community-card-tags">
+                                            <span class="community-tag">#문자열</span>
+                                            <span class="community-tag">#조건문</span>
+                                        </div>
+                                    </div>
+                                    <div class="community-card">
+                                        <div class="community-card-top">
+                                            <span class="community-level-badge lv-purple">Lv.5</span>
+                                            <span class="community-card-title">재귀로 피보나치 수열 구현</span>
+                                        </div>
+                                        <div class="community-card-meta">
+                                            <span class="community-card-author">송*진</span>
+                                            <div class="community-card-stats">
+                                                <span>👁 83</span>
+                                                <span>💬 14</span>
+                                                <span>❤ 37</span>
+                                            </div>
+                                        </div>
+                                        <div class="community-card-tags">
+                                            <span class="community-tag">#재귀</span>
+                                            <span class="community-tag">#알고리즘</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Row 4: 스크린샷 | 설명 -->
@@ -1608,7 +2406,138 @@
                                 <li>학생 비밀번호 분실 시 선생님이 <strong>즉시 리셋</strong> 가능</li>
                             </ul>
                         </article>
-                        <div class="feature-screenshot">스크린샷 영역</div>
+                        <div class="feature-screenshot" style="padding:0; border:none; background:transparent;">
+                            <div class="admin-mockup-wrap">
+                                <!-- Main content -->
+                                <div class="admin-mockup-main">
+                                    <div class="admin-mockup-title">클래스 관리</div>
+
+                                    <!-- Class 1: 1학년 1반 -->
+                                    <div class="admin-class-card">
+                                        <div class="admin-class-header">
+                                            <div>
+                                                <span class="admin-class-name">1학년 1반</span>
+                                                <span class="admin-class-count">👤 2</span>
+                                            </div>
+                                            <div class="admin-class-btns">
+                                                <span class="admin-class-btn primary">진도</span>
+                                                <span class="admin-class-btn">수정</span>
+                                                <span class="admin-class-btn">삭제</span>
+                                            </div>
+                                        </div>
+                                        <div class="admin-student-row">
+                                            <span class="admin-student-name">김길동</span>
+                                            <span class="admin-student-progress">🔑 12/20개</span>
+                                            <span style="color:#9094a8; font-size:11px;">2026-03-14</span>
+                                            <div class="admin-student-links">
+                                                <span class="admin-student-link">영상</span>
+                                                <span class="admin-student-link highlight">AI</span>
+                                                <span class="admin-student-link">진도</span>
+                                                <span class="admin-student-link">상세</span>
+                                            </div>
+                                        </div>
+                                        <div class="admin-student-row">
+                                            <span class="admin-student-name">김길순</span>
+                                            <span class="admin-student-progress">🔑 8/20개</span>
+                                            <span style="color:#9094a8; font-size:11px;">2026-03-13</span>
+                                            <div class="admin-student-links">
+                                                <span class="admin-student-link">영상</span>
+                                                <span class="admin-student-link highlight">AI</span>
+                                                <span class="admin-student-link">진도</span>
+                                                <span class="admin-student-link">상세</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Class 2: 1학년 2반 -->
+                                    <div class="admin-class-card">
+                                        <div class="admin-class-header">
+                                            <div>
+                                                <span class="admin-class-name">1학년 2반</span>
+                                                <span class="admin-class-count">👤 2</span>
+                                            </div>
+                                            <div class="admin-class-btns">
+                                                <span class="admin-class-btn primary">진도</span>
+                                                <span class="admin-class-btn">수정</span>
+                                                <span class="admin-class-btn">삭제</span>
+                                            </div>
+                                        </div>
+                                        <div class="admin-student-row">
+                                            <span class="admin-student-name">이길동</span>
+                                            <span class="admin-student-progress">🔑 15/20개</span>
+                                            <span style="color:#9094a8; font-size:11px;">2026-03-15</span>
+                                            <div class="admin-student-links">
+                                                <span class="admin-student-link">영상</span>
+                                                <span class="admin-student-link highlight">AI</span>
+                                                <span class="admin-student-link">진도</span>
+                                                <span class="admin-student-link">상세</span>
+                                            </div>
+                                        </div>
+                                        <div class="admin-student-row">
+                                            <span class="admin-student-name">이길순</span>
+                                            <span class="admin-student-progress">🔑 5/20개</span>
+                                            <span style="color:#9094a8; font-size:11px;">2026-03-12</span>
+                                            <div class="admin-student-links">
+                                                <span class="admin-student-link">영상</span>
+                                                <span class="admin-student-link highlight">AI</span>
+                                                <span class="admin-student-link">진도</span>
+                                                <span class="admin-student-link">상세</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Class 3: 선생님 -->
+                                    <div class="admin-class-card">
+                                        <div class="admin-class-header">
+                                            <div>
+                                                <span class="admin-class-name">선생님</span>
+                                                <span class="admin-class-count">👤 2</span>
+                                            </div>
+                                            <div class="admin-class-btns">
+                                                <span class="admin-class-btn primary">관리</span>
+                                                <span class="admin-class-btn">수정</span>
+                                            </div>
+                                        </div>
+                                        <div class="admin-student-row">
+                                            <span class="admin-student-name">김선생</span>
+                                            <span class="admin-student-progress" style="color:#27ae60;">1학년 1반</span>
+                                            <span style="color:#9094a8; font-size:11px;">담당</span>
+                                            <div class="admin-student-links">
+                                                <span class="admin-student-link">상세</span>
+                                            </div>
+                                        </div>
+                                        <div class="admin-student-row">
+                                            <span class="admin-student-name">이선생</span>
+                                            <span class="admin-student-progress" style="color:#27ae60;">1학년 2반</span>
+                                            <span style="color:#9094a8; font-size:11px;">담당</span>
+                                            <div class="admin-student-links">
+                                                <span class="admin-student-link">상세</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Point badges as horizontal row at bottom -->
+                                <div class="admin-point-badges-row">
+                                    <span class="admin-point-badge">
+                                        <span class="badge-check" style="color:#2d6de0;">✓</span>
+                                        클래스 관리
+                                    </span>
+                                    <span class="admin-point-badge">
+                                        <span class="badge-check" style="color:#7c3aed;">✓</span>
+                                        선생님 관리
+                                    </span>
+                                    <span class="admin-point-badge">
+                                        <span class="badge-check" style="color:#f06292;">✓</span>
+                                        학생 관리
+                                    </span>
+                                    <span class="admin-point-badge">
+                                        <span class="badge-check" style="color:#f0a050;">✓</span>
+                                        피드백 전달
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1650,7 +2579,7 @@
                     </div>
                     <div class="edu-benefit reveal reveal-d3">
                         <div class="edu-benefit-num">06</div>
-                        <h4>도입 부담이 <mark>전혀 없어요.</mark></h4>
+                        <h4><mark>무료체험</mark>으로 시작해보세요.</h4>
                         <p>14일 무료체험으로 시작하고, Trial에서 Basic/Pro로 결제 전환까지 한 번에 이어집니다.</p>
                     </div>
                 </div>
@@ -2083,8 +3012,19 @@
             document.getElementById('topBanner').classList.add('hidden');
         });
         function closeModal() {
+            var cb = document.getElementById('modalDontShow');
+            if (cb && cb.checked) {
+                var today = new Date().toISOString().slice(0, 10);
+                localStorage.setItem('hideUrlModal', today);
+            }
             document.getElementById('urlModal').classList.add('hidden');
         }
+        (function() {
+            var today = new Date().toISOString().slice(0, 10);
+            if (localStorage.getItem('hideUrlModal') === today) {
+                document.getElementById('urlModal').classList.add('hidden');
+            }
+        })();
         document.getElementById('modalClose').addEventListener('click', closeModal);
         document.getElementById('modalDismiss').addEventListener('click', closeModal);
         document.getElementById('urlModal').addEventListener('click', function (e) {
