@@ -40,15 +40,13 @@ export default function ContactModal({ isOpen, onClose }: Props) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          org_name: form.institutionName.trim(),
+          manager_name: form.contactName.trim(),
           phone: form.phone.trim(),
-          message: [
-            `[기관명] ${form.institutionName.trim()}`,
-            `[담당자] ${form.contactName.trim()}`,
-            `[기관유형] ${form.institutionType}`,
-            form.email ? `[이메일] ${form.email.trim()}` : '',
-            form.studentCount ? `[예상학생수] ${form.studentCount}` : '',
-            form.message ? `[문의내용] ${form.message.trim()}` : '',
-          ].filter(Boolean).join('\n'),
+          email: form.email.trim() || undefined,
+          org_type: form.institutionType,
+          student_count: form.studentCount || undefined,
+          message: form.message.trim() || undefined,
         }),
       })
       if (res.ok) {
