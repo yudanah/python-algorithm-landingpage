@@ -13,7 +13,7 @@ export default function Footer({ onOpenContact }: Props) {
           </div>
           <div className="footer-col">
             <h4>서비스</h4>
-            <a href="https://python.letscoding.co.kr" target="_blank" rel="noopener noreferrer">학습 플랫폼</a>
+            <a href="https://python.letscoding.kr" target="_blank" rel="noopener noreferrer">학습 플랫폼</a>
             <a href="#features">기능 소개</a>
           </div>
           <div className="footer-col">
@@ -24,12 +24,13 @@ export default function Footer({ onOpenContact }: Props) {
             >
               도입 문의
             </button>
-            <a href="mailto:contact@letscoding.co.kr">이메일 문의</a>
+            <a href="mailto:contact@letscoding.kr">이메일 문의</a>
           </div>
           <div className="footer-col">
             <h4>법률</h4>
-            <a href="#">이용약관</a>
-            <a href="#">개인정보처리방침</a>
+            <a href="/legal.html?tab=terms">이용약관</a>
+            <a href="/legal.html?tab=privacy">개인정보처리방침</a>
+            <a href="/legal.html?tab=no-email">이메일무단수집거부</a>
           </div>
         </div>
         <div className="footer-bottom">

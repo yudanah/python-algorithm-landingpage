@@ -21,12 +21,12 @@ export default function Hero({ bannerVisible, onOpenContact }: Props) {
             <div className="hero-popup-icon">&#128226;</div>
             <p className="hero-popup-text">
               기존 렛츠코딩 사이트의 주소가<br />
-              <strong>python.letscoding.co.kr</strong>로 변경되었습니다.<br />
+              <strong>python.letscoding.kr</strong>로 변경되었습니다.<br />
               바로가기 버튼을 눌러서 이동하세요.
             </p>
             <div className="hero-popup-actions">
               <a
-                href="https://python.letscoding.co.kr"
+                href="https://python.letscoding.kr"
                 className="btn btn-primary"
                 target="_blank"
                 rel="noopener noreferrer"

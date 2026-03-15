@@ -55,7 +55,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
         throw new Error()
       }
     } catch {
-      setError('전송에 실패했습니다. contact@letscoding.co.kr로 직접 문의해주세요.')
+      setError('전송에 실패했습니다. contact@letscoding.kr로 직접 문의해주세요.')
     } finally {
       setLoading(false)
     }

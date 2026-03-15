@@ -24,12 +24,12 @@ export default function TopBanner({ onVisibilityChange }: Props) {
         <span>
           <span className="full-text">
             이미 사용 중이신가요?{' '}
-            <a href="https://python.letscoding.co.kr" target="_blank" rel="noopener noreferrer">
-              python.letscoding.co.kr 바로가기 &rarr;
+            <a href="https://python.letscoding.kr" target="_blank" rel="noopener noreferrer">
+              python.letscoding.kr 바로가기 &rarr;
             </a>
           </span>
           <span className="short-text">
-            <a href="https://python.letscoding.co.kr" target="_blank" rel="noopener noreferrer">
+            <a href="https://python.letscoding.kr" target="_blank" rel="noopener noreferrer">
               학습하러 가기 &rarr;
             </a>
           </span>

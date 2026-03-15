@@ -1,5 +1,9 @@
 {
   "rewrites": [
+    { "source": "/legal", "destination": "/legal.html" },
+    { "source": "/terms", "destination": "/legal.html?tab=terms" },
+    { "source": "/privacy", "destination": "/legal.html?tab=privacy" },
+    { "source": "/no-email", "destination": "/legal.html?tab=no-email" },
     { "source": "/api/(.*)", "destination": "/api/$1" }
   ]
 }

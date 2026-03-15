@@ -2,8 +2,8 @@
 
 > **작성일**: 2026-02-23
 > **브랜드**: 렛츠코딩앤플레이 (Let's Coding & Play)
-> **서비스 URL**: python.letscoding.co.kr
-> **랜딩페이지 URL**: letscoding.co.kr
+> **서비스 URL**: python.letscoding.kr
+> **랜딩페이지 URL**: letscoding.kr
 
 ---
 
@@ -222,7 +222,7 @@ Text Dark:               5%  |  ██
 │                          │
 │   [최하단 바]              │
 │   Warm Teal 배경 띠        │
-│   "python.letscoding.co.kr"│
+│   "python.letscoding.kr"│
 │                          │
 └─────────────────────────┘
 ```
@@ -238,7 +238,7 @@ Text Dark:               5%  |  ██
 | 서브 카피 | "초등~고등학생을 위한 AI 파이썬 학습 플랫폼" — Noto Sans KR Medium 10pt, Warm Gray |
 | 플랫폼 목업 | 실제 플랫폼 문제 풀이 화면 캡처를 노트북/태블릿 목업 프레임에 넣기. 화면에 Python 코드와 "정답!" 표시가 보이도록. 목업 아래 부드러운 그림자(drop shadow, 10% opacity) |
 | 신뢰 지표 | 가로 3열 배치. 각각 아이콘(원형 Soft Mint 배경) + 숫자(Nunito ExtraBold 18pt, Warm Teal) + 라벨(7pt, Warm Gray). 숫자: "10+", "500+", "300+" |
-| 하단 URL 바 | Warm Teal 배경, 흰색 텍스트 "python.letscoding.co.kr", 높이 12mm |
+| 하단 URL 바 | Warm Teal 배경, 흰색 텍스트 "python.letscoding.kr", 높이 12mm |
 
 #### 분위기 키워드
 - 밝고 따뜻한 첫인상
@@ -537,7 +537,7 @@ Text Dark:               5%  |  ██
 │  ┌───────────────────┐   │
 │  │                    │   │
 │  │   QR 코드          │   │
-│  │   (letscoding.co.kr│   │
+│  │   (letscoding.kr│   │
 │  │    랜딩페이지)      │   │
 │  │                    │   │
 │  │   50mm x 50mm      │   │
@@ -550,9 +550,9 @@ Text Dark:               5%  |  ██
 │                          │
 │  [연락처 영역]             │
 │                          │
-│  📧 contact@letscoding.co.kr │
+│  📧 contact@letscoding.kr │
 │  📞 063-714-2536          │
-│  🌐 letscoding.co.kr      │
+│  🌐 letscoding.kr      │
 │  📍 렛츠코딩앤플레이       │
 │                          │
 │  ── 구분선 ──              │
@@ -576,7 +576,7 @@ Text Dark:               5%  |  ██
 | 요소 | 사양 |
 |------|------|
 | 상단 CTA 카피 | "지금 바로 시작하세요" — Bold 14pt, Charcoal |
-| QR 코드 | letscoding.co.kr로 연결. 50mm x 50mm. QR 중앙에 로고 삽입 가능. QR 주변 여백(quiet zone) 최소 4mm 확보. QR 색상: Warm Teal(전경) + Warm White(배경) |
+| QR 코드 | letscoding.kr로 연결. 50mm x 50mm. QR 중앙에 로고 삽입 가능. QR 주변 여백(quiet zone) 최소 4mm 확보. QR 색상: Warm Teal(전경) + Warm White(배경) |
 | QR 라벨 | "QR코드를 스캔하면 랜딩페이지로 이동합니다" — 7pt, Warm Gray, 중앙 정렬 |
 | 연락처 아이콘 | 작은 원형(20px) Soft Mint 배경 + Teal 아이콘. 각 줄 높이 동일하게 정렬 |
 | 연락처 텍스트 | Regular 8pt, Charcoal. 이메일/전화번호/URL/회사명 |
@@ -595,7 +595,7 @@ Text Dark:               5%  |  ██
 | 4 | 타자연습 화면 캡처 | (필요 시 기능 카드 옆) | A | Python 표현식 타이핑 중인 게임 화면 |
 | 5 | 교사 대시보드 화면 캡처 | 교사/기관 패널 | C | 반별 학생 목록 + 진행상황 바가 보이는 대시보드 |
 | 6 | 학부모 피드백 화면 캡처 | (필요 시) | D | 학부모가 받는 리포트 링크 화면 |
-| 7 | QR 코드 이미지 | 뒷면 중앙 | E | letscoding.co.kr 연결, Warm Teal 색상 |
+| 7 | QR 코드 이미지 | 뒷면 중앙 | E | letscoding.kr 연결, Warm Teal 색상 |
 | 8 | 노트북/태블릿 목업 프레임 | 표지 화면 캡처 감싸기 | F | 무료 목업 템플릿 사용 (Figma/Photoshop) |
 
 > **캡처 시 주의사항**: 학생 이름 등 개인정보가 보이지 않도록 더미 데이터로 촬영. 화면 해상도 최소 300dpi.

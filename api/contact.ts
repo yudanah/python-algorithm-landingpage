@@ -15,7 +15,7 @@ const messageService = new SolapiMessageService(
   process.env.SOLAPI_API_SECRET!
 );
 
-const NOTIFICATION_EMAIL = 'contact@letscoding.co.kr';
+const NOTIFICATION_EMAIL = 'contact@letscoding.kr';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // CORS
