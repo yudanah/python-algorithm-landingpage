@@ -24,3 +24,7 @@ Thumbs.db
 # OMC state
 .omc/
 .env*.local
+
+# Landing page
+edzip-landing.html
+temp.md
