@@ -4,244 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>렛츠코딩 법률 및 정책 안내</title>
+    <link rel="stylesheet" href="/common.css">
+    <link rel="stylesheet" href="/legal.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #f4f7fb;
-            --card: #ffffff;
-            --line: #dbe3ef;
-            --text: #0f172a;
-            --muted: #475569;
-            --primary: #2563eb;
-            --primary-soft: #dbeafe;
-            --shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
-            --radius-lg: 20px;
-            --radius-md: 14px;
-        }
-
-        * { box-sizing: border-box; }
-        html, body { margin: 0; padding: 0; }
-        body {
-            font-family: "Noto Sans KR", sans-serif;
-            background:
-                radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 32%),
-                linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);
-            color: var(--text);
-        }
-        a { color: inherit; text-decoration: none; }
-
-        .page {
-            min-height: 100vh;
-            padding: 40px 20px 56px;
-        }
-        .shell {
-            width: min(100%, 1080px);
-            margin: 0 auto;
-        }
-        .topbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-        .brand {
-            font-size: 18px;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-        }
-        .back-link {
-            font-size: 14px;
-            color: var(--muted);
-        }
-        .hero {
-            background: var(--card);
-            border: 1px solid rgba(219, 227, 239, 0.9);
-            border-radius: 28px;
-            box-shadow: var(--shadow);
-            padding: 32px;
-        }
-        .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 12px;
-            font-weight: 800;
-            color: var(--primary);
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-        .eyebrow::before {
-            content: "";
-            width: 14px;
-            height: 1.5px;
-            background: currentColor;
-        }
-        .hero h1 {
-            margin: 14px 0 10px;
-            font-size: clamp(28px, 4vw, 42px);
-            line-height: 1.2;
-            letter-spacing: -0.04em;
-        }
-        .hero p {
-            margin: 0;
-            max-width: 760px;
-            font-size: 15px;
-            line-height: 1.8;
-            color: var(--muted);
-        }
-        .scope-note {
-            margin-top: 16px;
-            padding: 14px 16px;
-            border-radius: var(--radius-md);
-            background: #f8fafc;
-            border: 1px solid var(--line);
-            font-size: 13px;
-            color: var(--muted);
-        }
-        .layout {
-            display: grid;
-            grid-template-columns: 240px minmax(0, 1fr);
-            gap: 24px;
-            margin-top: 24px;
-        }
-        .sidebar,
-        .content-card {
-            background: var(--card);
-            border: 1px solid rgba(219, 227, 239, 0.9);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow);
-        }
-        .sidebar {
-            position: sticky;
-            top: 24px;
-            height: fit-content;
-            padding: 18px;
-        }
-        .tab-link {
-            display: block;
-            padding: 14px 16px;
-            border-radius: 14px;
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--muted);
-            transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
-        }
-        .tab-link + .tab-link {
-            margin-top: 8px;
-        }
-        .tab-link.active {
-            background: var(--primary-soft);
-            color: var(--primary);
-        }
-        .tab-link:hover {
-            background: #f8fafc;
-            color: var(--text);
-            transform: translateX(1px);
-        }
-        .content-card {
-            padding: 28px;
-        }
-        .tab-panel { display: none; }
-        .tab-panel.active { display: block; }
-        .content-card h2 {
-            margin: 0 0 8px;
-            font-size: 26px;
-            letter-spacing: -0.03em;
-        }
-        .content-card .lead {
-            margin: 0 0 20px;
-            font-size: 14px;
-            color: var(--muted);
-            line-height: 1.8;
-        }
-        .policy-content {
-            border-top: 1px solid var(--line);
-            padding-top: 20px;
-            font-size: 14px;
-            line-height: 1.85;
-            color: var(--muted);
-        }
-        .policy-content h4 {
-            margin: 22px 0 8px;
-            color: var(--text);
-            font-size: 15px;
-        }
-        .policy-content p {
-            margin: 0 0 14px;
-        }
-        .policy-content ul {
-            margin: 0 0 14px;
-            padding-left: 20px;
-        }
-        .policy-content li {
-            margin-bottom: 8px;
-        }
-        .policy-meta {
-            margin-bottom: 18px;
-            padding: 14px 16px;
-            border-radius: 16px;
-            background: #f8fafc;
-            border: 1px solid var(--line);
-            color: var(--muted);
-        }
-        .policy-meta strong {
-            color: var(--text);
-        }
-        .no-email-box {
-            border: 1px solid var(--line);
-            border-radius: 16px;
-            padding: 22px 20px;
-            background: #f8fafc;
-            font-size: 14px;
-            line-height: 1.9;
-            color: var(--muted);
-        }
-        .no-email-box strong {
-            color: var(--text);
-        }
-
-        @media (max-width: 860px) {
-            .layout {
-                grid-template-columns: 1fr;
-            }
-            .sidebar {
-                position: static;
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 8px;
-            }
-            .tab-link,
-            .tab-link + .tab-link {
-                margin-top: 0;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .page { padding: 24px 14px 40px; }
-            .hero,
-            .content-card { padding: 20px; }
-            .sidebar {
-                grid-template-columns: 1fr;
-                padding: 14px;
-            }
-            .topbar {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-    </style>
 </head>
-<body>
+<body data-page-type="legal">
+    <div data-site-header></div>
+    <div data-site-mobile-menu></div>
+
+    <main class="legal-main">
     <div class="page">
         <div class="shell">
-            <div class="topbar">
-                <a href="/" class="brand">LET'S CODING</a>
-                <a href="javascript:history.back()" class="back-link">이전 페이지로 돌아가기</a>
-            </div>
-
             <section class="hero">
                 <span class="eyebrow">Legal Center</span>
                 <h1>이용약관 및 정책 안내</h1>
@@ -524,7 +299,11 @@
             </div>
         </div>
     </div>
+    </main>
 
+    <div data-site-footer></div>
+
+    <script src="/site-shell.js" defer></script>
     <script>
         (function () {
             var validTabs = ["terms", "privacy", "no-email"];
