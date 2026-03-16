@@ -141,9 +141,11 @@
 .legal-main .policy-content p {
     margin: 0 0 14px;
 }
-.legal-main .policy-content ul {
+.legal-main .policy-content ul,
+.legal-main .policy-content ol {
     margin: 0 0 14px;
     padding-left: 20px;
+    list-style-position: inside;
 }
 .legal-main .policy-content li {
     margin-bottom: 8px;
