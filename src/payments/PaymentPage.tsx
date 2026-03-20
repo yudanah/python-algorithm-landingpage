@@ -3,9 +3,9 @@ import type { PaymentQuote } from './types'
 
 declare global {
   interface Window {
-    TossPayments?: (clientKey: string) => Promise<{
-      payment: (opts?: Record<string, unknown>) => { requestPayment: (method: string, options: Record<string, unknown>) => Promise<void> }
-    }>
+    TossPayments?: (clientKey: string) => {
+      payment: (opts: { customerKey: string }) => { requestPayment: (options: Record<string, unknown>) => Promise<void> }
+    }
   }
 }
 
@@ -74,10 +74,12 @@ export default function PaymentPage() {
       const sessionData = JSON.parse(sessionText) as { error?: string; amount?: number; orderId?: string; orderName?: string }
       if (!sessionRes.ok) throw new Error(sessionData.error || '결제 세션 생성에 실패했습니다.')
 
-      const tossPayments = await window.TossPayments(clientKey)
-      const payment = tossPayments.payment()
+      const tossPayments = window.TossPayments(clientKey)
+      const customerKey = `customer_${token.slice(0, 16)}`
+      const payment = tossPayments.payment({ customerKey })
 
-      await payment.requestPayment('CARD', {
+      await payment.requestPayment({
+        method: 'CARD',
         amount: {
           currency: quote.currency,
           value: Number(sessionData.amount || 0),
