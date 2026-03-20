@@ -1003,7 +1003,7 @@
                                         <option>엔터프라이즈 (51명 이상)</option>
                                     </select>
                                 </div>
-                                <div class="field">
+                                <div class="field" id="desiredPeriodField">
                                     <label for="desiredPeriod">희망 기간<span class="req">*</span></label>
                                     <select id="desiredPeriod" name="desired_period" required>
                                         <option value="">기간 선택</option>
@@ -1060,6 +1060,17 @@
         var cardMonths = { basic: 1, pro: 1 };
         var desiredPlan   = document.getElementById('desiredPlan');
         var desiredPeriod = document.getElementById('desiredPeriod');
+        var desiredPeriodField = document.getElementById('desiredPeriodField');
+
+        function syncDesiredPeriodVisibility() {
+            var isTrial = desiredPlan.value.indexOf('무료체험') !== -1;
+            desiredPeriod.disabled = isTrial;
+            desiredPeriod.required = !isTrial;
+            desiredPeriodField.style.display = isTrial ? 'none' : '';
+            if (isTrial) {
+                desiredPeriod.value = '';
+            }
+        }
 
         function updateCardPrice(card, months) {
             var plan    = card.dataset.plan;
@@ -1098,18 +1109,20 @@
                 var card = link.closest('.pricing-card');
                 var plan = card ? card.dataset.plan : '';
                 desiredPlan.value   = link.dataset.planSelect;
-                desiredPeriod.value = (cardMonths[plan] || 1) + '개월';
+                if (desiredPlan.value.indexOf('무료체험') !== -1) {
+                    desiredPeriod.value = '';
+                } else {
+                    desiredPeriod.value = (cardMonths[plan] || 1) + '개월';
+                }
+                syncDesiredPeriodVisibility();
             });
         });
 
         desiredPeriod.value = '';
+        syncDesiredPeriodVisibility();
 
         desiredPlan.addEventListener('change', function () {
-            var isTrial = desiredPlan.value.indexOf('무료체험') !== -1;
-            desiredPeriod.disabled = isTrial;
-            if (isTrial) {
-                desiredPeriod.value = '';
-            }
+            syncDesiredPeriodVisibility();
         });
 
         /* ── Pricing tabs (mobile) ────────────────────────────── */
@@ -1152,7 +1165,8 @@
             var emailId     = document.getElementById('emailId').value.trim();
             var emailDomain = document.getElementById('emailDomain').value.trim();
             var privacyAgree = document.getElementById('privacyAgree').checked;
-            if (!orgType || !orgName || !managerName || !phone || !emailId || !emailDomain || !desiredPlan.value || !desiredPeriod.value || !privacyAgree) {
+            var needsDesiredPeriod = desiredPlan.value.indexOf('무료체험') === -1;
+            if (!orgType || !orgName || !managerName || !phone || !emailId || !emailDomain || !desiredPlan.value || (needsDesiredPeriod && !desiredPeriod.value) || !privacyAgree) {
                 formMessage.className = 'form-message error';
                 formMessage.textContent = '필수 항목을 모두 입력하고 개인정보 수집에 동의해 주세요.';
                 return;
@@ -1170,7 +1184,7 @@
                 email:          emailId + '@' + emailDomain,
                 org_type:       orgType,
                 desired_plan:   desiredPlan.value,
-                desired_period: desiredPeriod.value,
+                desired_period: needsDesiredPeriod ? desiredPeriod.value : '',
                 message:        (document.getElementById('message') ? document.getElementById('message').value.trim() : ''),
             };
             fetch('/api/contact', {

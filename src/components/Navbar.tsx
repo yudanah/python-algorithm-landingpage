@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from 'react'
 interface Props {
   bannerVisible: boolean
   onOpenContact: () => void
+  onOpenQuoteLookup: () => void
 }
 
 const NAV_ITEMS = [
@@ -11,7 +12,7 @@ const NAV_ITEMS = [
   { label: '요금', target: 'pricing' },
 ]
 
-export default function Navbar({ bannerVisible, onOpenContact }: Props) {
+export default function Navbar({ bannerVisible, onOpenContact, onOpenQuoteLookup }: Props) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('')
@@ -66,7 +67,16 @@ export default function Navbar({ bannerVisible, onOpenContact }: Props) {
                 {item.label}
               </button>
             ))}
-            <button className="navbar-cta desktop-only" onClick={onOpenContact}>
+          </div>
+
+          <div className="navbar-actions">
+            <a className="navbar-action navbar-action-ghost desktop-only" href="https://python.letscoding.kr" target="_blank" rel="noopener noreferrer">
+              학습 사이트 이동
+            </a>
+            <button className="navbar-action navbar-action-ghost desktop-only" onClick={onOpenQuoteLookup}>
+              견적 조회
+            </button>
+            <button className="navbar-action navbar-action-primary desktop-only" onClick={onOpenContact}>
               도입 문의
             </button>
           </div>
@@ -87,6 +97,12 @@ export default function Navbar({ bannerVisible, onOpenContact }: Props) {
             {item.label}
           </button>
         ))}
+        <a className="mobile-menu-link" href="https://python.letscoding.kr" target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)}>
+          학습 사이트 이동
+        </a>
+        <button className="mobile-menu-link" onClick={() => { onOpenQuoteLookup(); setMobileOpen(false); }}>
+          견적 조회
+        </button>
         <button className="mobile-menu-cta" onClick={() => { onOpenContact(); setMobileOpen(false); }}>
           도입 문의
         </button>

@@ -4,6 +4,9 @@
     { "source": "/terms", "destination": "/legal.html?tab=terms" },
     { "source": "/privacy", "destination": "/legal.html?tab=privacy" },
     { "source": "/no-email", "destination": "/legal.html?tab=no-email" },
+    { "source": "/pay", "destination": "/pay.html" },
+    { "source": "/payment/success", "destination": "/payment-success.html" },
+    { "source": "/payment/fail", "destination": "/payment-fail.html" },
     { "source": "/api/(.*)", "destination": "/api/$1" }
   ]
 }

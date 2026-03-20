@@ -1,12 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { createClient } from '@supabase/supabase-js';
 import { Resend } from 'resend';
 import { SolapiMessageService } from 'solapi';
-
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_KEY!
-);
+import { supabaseAdmin } from './_lib/supabase.js';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -43,8 +38,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     message,
   } = req.body;
 
-  if (!org_name || !manager_name || !phone || !org_type) {
-    return res.status(400).json({ error: '기관명, 담당자 이름, 전화번호, 기관 유형은 필수 입력 항목입니다.' });
+  if (!org_name || !manager_name || !phone || !email || !org_type) {
+    return res.status(400).json({ error: '기관명, 담당자 이름, 전화번호, 이메일, 기관 유형은 필수 입력 항목입니다.' });
   }
 
   // 1. Resend로 알림 이메일 발송 (DB와 독립적으로 실행)
@@ -116,13 +111,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   // 2. Supabase에 저장
   let dbSaved = false;
   try {
-    const { error: dbError } = await supabase
+    const { error: dbError } = await supabaseAdmin
       .from('contact_inquiries')
       .insert({
         org_name,
         manager_name,
         phone,
-        email: email || null,
+        email,
         org_type,
         student_count: student_count || null,
         desired_plan: desired_plan || null,

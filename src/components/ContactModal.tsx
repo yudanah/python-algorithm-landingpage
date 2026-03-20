@@ -13,6 +13,8 @@ export default function ContactModal({ isOpen, onClose }: Props) {
     email: '',
     institutionType: '',
     studentCount: '',
+    desiredPlan: '',
+    desiredPeriod: '',
     message: '',
   })
   const [loading, setLoading] = useState(false)
@@ -22,14 +24,21 @@ export default function ContactModal({ isOpen, onClose }: Props) {
   if (!isOpen) return null
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
+    const { name, value } = e.target
+    setForm(prev => {
+      const next = { ...prev, [name]: value }
+      if (name === 'desiredPlan') {
+        next.desiredPeriod = value === '무료체험' ? '14일' : ''
+      }
+      return next
+    })
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
 
-    if (!form.institutionName.trim() || !form.contactName.trim() || !form.phone.trim() || !form.institutionType) {
+    if (!form.institutionName.trim() || !form.contactName.trim() || !form.phone.trim() || !form.email.trim() || !form.institutionType) {
       setError('필수 항목을 모두 입력해주세요.')
       return
     }
@@ -43,9 +52,11 @@ export default function ContactModal({ isOpen, onClose }: Props) {
           org_name: form.institutionName.trim(),
           manager_name: form.contactName.trim(),
           phone: form.phone.trim(),
-          email: form.email.trim() || undefined,
+          email: form.email.trim(),
           org_type: form.institutionType,
           student_count: form.studentCount || undefined,
+          desired_plan: form.desiredPlan || undefined,
+          desired_period: form.desiredPeriod || undefined,
           message: form.message.trim() || undefined,
         }),
       })
@@ -100,7 +111,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                   <input className="form-input" name="phone" type="tel" value={form.phone} onChange={handleChange} placeholder="010-0000-0000" />
                 </div>
                 <div className="form-group">
-                  <label className="form-label">이메일</label>
+                  <label className="form-label">이메일 <span className="required">*</span></label>
                   <input className="form-input" name="email" type="email" value={form.email} onChange={handleChange} placeholder="email@example.com" />
                 </div>
               </div>
@@ -124,6 +135,30 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                     <option value="11~30명">11~30명</option>
                     <option value="31~50명">31~50명</option>
                     <option value="50명 이상">50명 이상</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label className="form-label">희망 라이선스</label>
+                  <select className="form-select" name="desiredPlan" value={form.desiredPlan} onChange={handleChange}>
+                    <option value="">선택해주세요</option>
+                    <option value="무료체험">무료체험</option>
+                    <option value="basic">Basic</option>
+                    <option value="standard">Standard</option>
+                    <option value="premium">Premium</option>
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label className="form-label">희망 기간</label>
+                  <select className="form-select" name="desiredPeriod" value={form.desiredPeriod} onChange={handleChange} disabled={form.desiredPlan === '무료체험'}>
+                    <option value="">선택해주세요</option>
+                    <option value="14일">14일</option>
+                    <option value="1개월">1개월</option>
+                    <option value="3개월">3개월</option>
+                    <option value="6개월">6개월</option>
+                    <option value="12개월">12개월</option>
                   </select>
                 </div>
               </div>

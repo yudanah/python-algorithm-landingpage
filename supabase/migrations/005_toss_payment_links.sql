@@ -1,0 +1,2 @@
+-- 이 마이그레이션은 003_quotes_and_lookup.sql에 통합되었습니다.
+-- public_token 컬럼과 인덱스가 quotes 테이블 생성 시 포함됩니다.

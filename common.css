@@ -326,6 +326,218 @@ section { position: relative; }
 .top-banner-close:hover { color: #fff; }
 .top-banner.hidden { display: none; }
 
+/* ── Quote Lookup Modal ─────────────────────────────────── */
+.quote-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(15, 23, 42, 0.56);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.quote-modal-overlay.hidden { display: none; }
+.quote-modal-box {
+    width: min(100%, 720px);
+    max-height: 90vh;
+    overflow: auto;
+    background: #fff;
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    box-shadow: 0 24px 60px rgba(15,23,42,0.18);
+    padding: 28px;
+    position: relative;
+}
+.quote-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: transparent;
+    color: var(--text-3);
+    font-size: 28px;
+    line-height: 1;
+    padding: 4px 8px;
+}
+.quote-modal-step.hidden { display: none; }
+.quote-modal-eyebrow {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+.quote-modal-box h2 {
+    font-size: 30px;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    margin-bottom: 10px;
+}
+.quote-modal-copy {
+    color: var(--text-2);
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+.quote-modal-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 16px 0 8px;
+}
+.quote-modal-input {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 16px;
+    font-size: 15px;
+    color: var(--text);
+}
+.quote-modal-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(37,99,235,0.12);
+}
+.quote-modal-code {
+    text-align: center;
+    font-size: 24px;
+    letter-spacing: 0.3em;
+    font-weight: 800;
+}
+.quote-modal-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 18px;
+    padding: 14px 18px;
+    border-radius: 14px;
+    background: var(--primary);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 800;
+}
+.quote-modal-primary.inline {
+    width: auto;
+}
+.quote-modal-text {
+    background: transparent;
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 14px;
+    margin-top: 12px;
+}
+.quote-modal-alert {
+    padding: 12px 14px;
+    border-radius: 14px;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+.quote-modal-alert.hidden { display: none; }
+.quote-modal-alert.error {
+    background: #fef2f2;
+    color: #b91c1c;
+}
+.quote-modal-alert.info {
+    background: #eff6ff;
+    color: var(--primary-hov);
+}
+.quote-modal-results-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+.quote-modal-results {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.quote-result-card {
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: #fbfdff;
+    padding: 18px;
+}
+.quote-result-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+.quote-result-number {
+    color: var(--text-3);
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+.quote-result-head h3 {
+    font-size: 20px;
+    line-height: 1.3;
+}
+.quote-result-status {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: var(--bg-blue);
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+.quote-result-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+.quote-result-meta div,
+.quote-result-item {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: #fff;
+    padding: 12px 14px;
+}
+.quote-result-meta span,
+.quote-result-item span {
+    display: block;
+    color: var(--text-3);
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+.quote-result-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 14px 0 4px;
+}
+.quote-result-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+}
+.quote-result-item p {
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+.quote-result-empty {
+    border: 1px dashed var(--border-md);
+    border-radius: 18px;
+    background: var(--bg-alt);
+    padding: 36px 20px;
+    text-align: center;
+}
+.quote-result-empty h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+.quote-result-empty p {
+    color: var(--text-2);
+}
+
 
 /* ── Responsive (common) ──────────────────────────────────── */
 @media (max-width: 1000px) {
@@ -339,6 +551,11 @@ section { position: relative; }
     .footer-legal { justify-content: center; }
     .top-banner { font-size: 12px; padding: 8px 40px 8px 16px; }
     .top-banner-text { display: none; }
+    .quote-modal-box { padding: 24px 18px; }
+    .quote-modal-results-head,
+    .quote-result-head,
+    .quote-result-item { flex-direction: column; }
+    .quote-result-meta { grid-template-columns: 1fr; }
 }
 @media (max-width: 500px) {
     .brand { font-size: 13px; }
